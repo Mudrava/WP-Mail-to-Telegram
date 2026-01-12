@@ -1,0 +1,1505 @@
+/**
+ * WP Mail to Telegram - Admin Styles
+ */
+
+/* ==========================================================================
+   Variables
+   ========================================================================== */
+:root {
+    --wpmtt-primary: #0088cc;
+    --wpmtt-primary-dark: #006699;
+    --wpmtt-success: #00a32a;
+    --wpmtt-warning: #dba617;
+    --wpmtt-error: #d63638;
+    --wpmtt-gray-100: #f6f7f7;
+    --wpmtt-gray-200: #e0e0e0;
+    --wpmtt-gray-300: #c3c4c7;
+    --wpmtt-gray-600: #50575e;
+    --wpmtt-gray-900: #1d2327;
+    --wpmtt-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    --wpmtt-shadow-lg: 0 4px 20px rgba(0, 0, 0, 0.12);
+    --wpmtt-radius: 8px;
+    --wpmtt-radius-lg: 12px;
+}
+
+/* ==========================================================================
+   Base Styles
+   ========================================================================== */
+.wpmtt-wrap {
+    max-width: 1400px;
+}
+
+.wpmtt-wrap h1 {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-weight: 600;
+}
+
+.wpmtt-wrap h1 .dashicons {
+    font-size: 28px;
+    width: 28px;
+    height: 28px;
+}
+
+/* ==========================================================================
+   Stats Cards
+   ========================================================================== */
+.wpmtt-stats-cards {
+    display: flex;
+    gap: 16px;
+    margin: 20px 0;
+    flex-wrap: wrap;
+}
+
+.wpmtt-stat-card {
+    background: #fff;
+    border-radius: 0 var(--wpmtt-radius) var(--wpmtt-radius) 0;
+    padding: 20px 24px;
+    min-width: 140px;
+    box-shadow: var(--wpmtt-shadow);
+    border-left: 4px solid var(--wpmtt-gray-300);
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.wpmtt-stat-card.wpmtt-stat-success {
+    border-left-color: var(--wpmtt-success);
+}
+
+.wpmtt-stat-card.wpmtt-stat-error {
+    border-left-color: var(--wpmtt-error);
+}
+
+.wpmtt-stat-card.wpmtt-stat-telegram {
+    border-left-color: var(--wpmtt-primary);
+}
+
+.wpmtt-stat-number {
+    font-size: 28px;
+    font-weight: 700;
+    color: var(--wpmtt-gray-900);
+    line-height: 1;
+}
+
+.wpmtt-stat-label {
+    font-size: 13px;
+    color: var(--wpmtt-gray-600);
+}
+
+/* ==========================================================================
+   Filters
+   ========================================================================== */
+.wpmtt-filters {
+    background: #fff;
+    padding: 16px;
+    border-radius: var(--wpmtt-radius);
+    margin-bottom: 20px;
+    box-shadow: var(--wpmtt-shadow);
+}
+
+.wpmtt-filter-group {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.wpmtt-filter-group select,
+.wpmtt-filter-group input[type="search"] {
+    height: 36px;
+    min-width: 160px;
+}
+
+/* ==========================================================================
+   Email Table
+   ========================================================================== */
+.wpmtt-table-actions {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 12px;
+}
+
+.wpmtt-email-table {
+    background: #fff;
+    box-shadow: var(--wpmtt-shadow);
+    border-radius: var(--wpmtt-radius);
+    overflow: hidden;
+}
+
+.wpmtt-email-table th {
+    background: var(--wpmtt-gray-100);
+    font-weight: 600;
+}
+
+.wpmtt-email-table .column-date {
+    width: 100px;
+}
+
+.wpmtt-email-table .column-cb,
+.wpmtt-email-table .check-column {
+    width: 40px;
+    padding: 12px 8px;
+    vertical-align: middle;
+}
+
+.wpmtt-email-table .check-column input[type="checkbox"] {
+    margin: 0;
+    vertical-align: middle;
+}
+
+.wpmtt-email-table .column-to {
+    width: 180px;
+}
+
+.wpmtt-email-table .column-status {
+    width: 100px;
+}
+
+.wpmtt-email-table .column-telegram {
+    width: 80px;
+    text-align: center;
+}
+
+.wpmtt-email-table .column-actions {
+    width: 100px;
+}
+
+.wpmtt-date {
+    display: block;
+    font-weight: 500;
+}
+
+.wpmtt-time {
+    display: block;
+    font-size: 12px;
+    color: var(--wpmtt-gray-600);
+}
+
+.wpmtt-email-address {
+    word-break: break-word;
+}
+
+.wpmtt-subject-link {
+    font-weight: 500;
+    text-decoration: none;
+}
+
+.wpmtt-subject-link:hover {
+    color: var(--wpmtt-primary);
+}
+
+.wpmtt-no-items {
+    text-align: center;
+    padding: 60px 20px !important;
+    color: var(--wpmtt-gray-600);
+}
+
+.wpmtt-no-items .dashicons {
+    font-size: 48px;
+    width: 48px;
+    height: 48px;
+    margin-bottom: 12px;
+    opacity: 0.5;
+}
+
+/* ==========================================================================
+   Badges & Status
+   ========================================================================== */
+.wpmtt-badge {
+    display: inline-block;
+    padding: 3px 10px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 500;
+}
+
+.wpmtt-badge-success {
+    background: #d4edda;
+    color: #155724;
+}
+
+.wpmtt-badge-error {
+    background: #f8d7da;
+    color: #721c24;
+}
+
+.wpmtt-badge-warning {
+    background: #fff3cd;
+    color: #856404;
+}
+
+.wpmtt-badge-default {
+    background: var(--wpmtt-gray-200);
+    color: var(--wpmtt-gray-600);
+}
+
+.wpmtt-tg-status {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.wpmtt-tg-status .dashicons {
+    font-size: 20px;
+    width: 20px;
+    height: 20px;
+}
+
+.wpmtt-tg-sent .dashicons {
+    color: var(--wpmtt-success);
+}
+
+.wpmtt-tg-error .dashicons {
+    color: var(--wpmtt-error);
+}
+
+.wpmtt-tg-pending .dashicons {
+    color: var(--wpmtt-gray-300);
+}
+
+.wpmtt-status {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.wpmtt-status-success {
+    color: var(--wpmtt-success);
+}
+
+.wpmtt-status-error {
+    color: var(--wpmtt-error);
+}
+
+.wpmtt-status-warning {
+    color: var(--wpmtt-warning);
+}
+
+/* ==========================================================================
+   Pagination
+   ========================================================================== */
+.wpmtt-pagination {
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+}
+
+.wpmtt-pagination .page-numbers {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 36px;
+    height: 36px;
+    padding: 0 12px;
+    background: #fff;
+    border: 1px solid var(--wpmtt-gray-200);
+    text-decoration: none;
+    color: var(--wpmtt-gray-900);
+    margin: 0 2px;
+    border-radius: 4px;
+}
+
+.wpmtt-pagination .page-numbers.current {
+    background: var(--wpmtt-primary);
+    border-color: var(--wpmtt-primary);
+    color: #fff;
+}
+
+/* ==========================================================================
+   Email Detail Page
+   ========================================================================== */
+.wpmtt-email-detail {
+    max-width: 1000px;
+}
+
+.wpmtt-detail-header {
+    margin-bottom: 20px;
+}
+
+.wpmtt-back-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    text-decoration: none;
+    color: var(--wpmtt-gray-600);
+    margin-bottom: 12px;
+}
+
+.wpmtt-back-link:hover {
+    color: var(--wpmtt-primary);
+}
+
+.wpmtt-email-meta {
+    background: #fff;
+    border-radius: var(--wpmtt-radius);
+    padding: 20px;
+    margin-bottom: 20px;
+    box-shadow: var(--wpmtt-shadow);
+}
+
+.wpmtt-meta-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 16px;
+}
+
+.wpmtt-meta-item {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.wpmtt-meta-label {
+    font-size: 12px;
+    color: var(--wpmtt-gray-600);
+    font-weight: 500;
+    text-transform: uppercase;
+}
+
+.wpmtt-meta-value {
+    font-size: 14px;
+    color: var(--wpmtt-gray-900);
+}
+
+/* View Tabs */
+.wpmtt-view-tabs {
+    display: flex;
+    gap: 4px;
+    margin-bottom: 0;
+    background: var(--wpmtt-gray-100);
+    padding: 8px 8px 0;
+    border-radius: var(--wpmtt-radius) var(--wpmtt-radius) 0 0;
+}
+
+.wpmtt-tab {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 10px 20px;
+    background: transparent;
+    border: none;
+    border-radius: var(--wpmtt-radius) var(--wpmtt-radius) 0 0;
+    text-decoration: none;
+    color: var(--wpmtt-gray-600);
+    font-weight: 500;
+    transition: all 0.2s;
+}
+
+.wpmtt-tab:hover {
+    background: rgba(255, 255, 255, 0.5);
+    color: var(--wpmtt-gray-900);
+}
+
+.wpmtt-tab.active {
+    background: #fff;
+    color: var(--wpmtt-primary);
+}
+
+/* Content Area */
+.wpmtt-email-content-wrapper {
+    background: #fff;
+    border-radius: 0 0 var(--wpmtt-radius) var(--wpmtt-radius);
+    box-shadow: var(--wpmtt-shadow);
+    min-height: 400px;
+}
+
+.wpmtt-email-preview {
+    padding: 0;
+}
+
+.wpmtt-email-preview iframe {
+    width: 100%;
+    min-height: 500px;
+    border: none;
+    display: block;
+}
+
+.wpmtt-email-code {
+    position: relative;
+}
+
+.wpmtt-code-actions {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    z-index: 10;
+}
+
+.wpmtt-email-code pre {
+    margin: 0;
+    padding: 20px;
+    background: var(--wpmtt-gray-100);
+    border-radius: 0 0 var(--wpmtt-radius) var(--wpmtt-radius);
+    overflow-x: auto;
+    max-height: 600px;
+}
+
+.wpmtt-email-code code {
+    font-family: 'Monaco', 'Consolas', monospace;
+    font-size: 13px;
+    line-height: 1.6;
+}
+
+.wpmtt-email-headers {
+    padding: 20px;
+}
+
+.wpmtt-email-headers table th {
+    width: 150px;
+    text-align: left;
+    font-weight: 600;
+}
+
+/* Attachments */
+.wpmtt-attachments {
+    background: #fff;
+    border-radius: var(--wpmtt-radius);
+    padding: 20px;
+    margin-top: 20px;
+    box-shadow: var(--wpmtt-shadow);
+}
+
+.wpmtt-attachments h3 {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin: 0 0 16px;
+}
+
+.wpmtt-attachment-list {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.wpmtt-attachment-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 0;
+    border-bottom: 1px solid var(--wpmtt-gray-200);
+}
+
+.wpmtt-attachment-item:last-child {
+    border-bottom: none;
+}
+
+.wpmtt-attachment-size {
+    color: var(--wpmtt-gray-600);
+    font-size: 12px;
+}
+
+/* Error Info */
+.wpmtt-error-info {
+    background: #fff5f5;
+    border: 1px solid var(--wpmtt-error);
+    border-radius: var(--wpmtt-radius);
+    padding: 20px;
+    margin-top: 20px;
+}
+
+.wpmtt-error-info h3 {
+    color: var(--wpmtt-error);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin: 0 0 16px;
+}
+
+.wpmtt-error-block {
+    margin-bottom: 16px;
+}
+
+.wpmtt-error-block:last-child {
+    margin-bottom: 0;
+}
+
+.wpmtt-error-block p {
+    margin: 4px 0 0;
+    font-family: monospace;
+    font-size: 13px;
+}
+
+/* ==========================================================================
+   Settings Page
+   ========================================================================== */
+.wpmtt-settings-page {
+    /* Container styles */
+    margin-top: 0;
+}
+
+.wpmtt-settings-section {
+    background: #fff;
+    border-radius: var(--wpmtt-radius);
+    padding: 24px;
+    margin-bottom: 24px;
+    box-shadow: var(--wpmtt-shadow);
+}
+
+.wpmtt-settings-section h2 {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin: 0 0 20px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid var(--wpmtt-gray-200);
+}
+
+.wpmtt-settings-section .form-table th {
+    width: 200px;
+    padding-top: 16px;
+}
+
+/* Toggle Switch */
+.wpmtt-toggle {
+    position: relative;
+    display: inline-block;
+    width: 48px;
+    height: 26px;
+}
+
+.wpmtt-toggle input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.wpmtt-toggle-slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: var(--wpmtt-gray-300);
+    border-radius: 26px;
+    transition: 0.3s;
+}
+
+.wpmtt-toggle-slider:before {
+    position: absolute;
+    content: "";
+    height: 20px;
+    width: 20px;
+    left: 3px;
+    bottom: 3px;
+    background: #fff;
+    border-radius: 50%;
+    transition: 0.3s;
+}
+
+.wpmtt-toggle input:checked+.wpmtt-toggle-slider {
+    background: var(--wpmtt-primary);
+}
+
+.wpmtt-toggle input:checked+.wpmtt-toggle-slider:before {
+    transform: translateX(22px);
+}
+
+/* Verification Code */
+.wpmtt-verification-code {
+    display: inline-block;
+    padding: 6px 12px;
+    background: var(--wpmtt-gray-100);
+    border-radius: 4px;
+    font-family: monospace;
+    margin-right: 12px;
+}
+
+/* Danger Zone */
+.wpmtt-danger-zone {
+    border: 1px solid var(--wpmtt-error);
+}
+
+.wpmtt-danger-zone h2 {
+    color: var(--wpmtt-error);
+}
+
+/* ==========================================================================
+   Status Indicators (next to buttons)
+   ========================================================================== */
+.wpmtt-status,
+.wpmtt-status-success,
+.wpmtt-status-error,
+.wpmtt-status-warning,
+#wpmtt-test-result,
+#wpmtt-test-email-result,
+#wpmtt-clear-result,
+#wpmtt-reset-result {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    margin-left: 12px;
+    vertical-align: middle;
+    font-size: 13px;
+    line-height: 28px;
+}
+
+.wpmtt-status .dashicons,
+.wpmtt-status-success .dashicons,
+.wpmtt-status-error .dashicons,
+.wpmtt-status-warning .dashicons,
+#wpmtt-test-result .dashicons,
+#wpmtt-test-email-result .dashicons,
+#wpmtt-clear-result .dashicons,
+#wpmtt-reset-result .dashicons {
+    font-size: 16px;
+    width: 16px;
+    height: 16px;
+    vertical-align: middle;
+}
+
+.wpmtt-status-success {
+    color: var(--wpmtt-success);
+}
+
+.wpmtt-status-error {
+    color: var(--wpmtt-error);
+}
+
+.wpmtt-status-warning {
+    color: var(--wpmtt-warning);
+}
+
+/* Form table row alignment */
+.wpmtt-settings-page .form-table td {
+    vertical-align: middle;
+}
+
+.wpmtt-settings-page .form-table td>.button,
+.wpmtt-settings-page .form-table td>input[type="text"],
+.wpmtt-settings-page .form-table td>input[type="email"],
+.wpmtt-settings-page .form-table td>select {
+    vertical-align: middle;
+}
+
+/* Inline elements alignment */
+.wpmtt-settings-page .form-table td>span,
+.wpmtt-settings-page .form-table td>code,
+.wpmtt-settings-page .form-table td>a.button {
+    vertical-align: middle;
+}
+
+/* ==========================================================================
+   Documentation Page
+   ========================================================================== */
+.wpmtt-docs-page {
+    /* Container styles */
+    margin-top: 0;
+}
+
+.wpmtt-docs-container {
+    display: flex;
+    gap: 30px;
+    margin-top: 20px;
+}
+
+.wpmtt-docs-sidebar {
+    flex: 0 0 200px;
+}
+
+.wpmtt-docs-nav {
+    position: sticky;
+    top: 32px;
+    background: #fff;
+    border-radius: var(--wpmtt-radius);
+    padding: 12px 0;
+    box-shadow: var(--wpmtt-shadow);
+}
+
+.wpmtt-docs-nav-item {
+    display: block;
+    padding: 10px 20px;
+    text-decoration: none;
+    color: var(--wpmtt-gray-600);
+    border-left: 3px solid transparent;
+    transition: all 0.2s;
+}
+
+.wpmtt-docs-nav-item:hover {
+    background: var(--wpmtt-gray-100);
+    color: var(--wpmtt-gray-900);
+}
+
+.wpmtt-docs-nav-item.active {
+    background: rgba(0, 136, 204, 0.1);
+    color: var(--wpmtt-primary);
+    border-left-color: var(--wpmtt-primary);
+}
+
+.wpmtt-docs-content {
+    flex: 1;
+    min-width: 0;
+}
+
+.wpmtt-docs-section {
+    background: #fff;
+    border-radius: var(--wpmtt-radius);
+    padding: 30px;
+    margin-bottom: 24px;
+    box-shadow: var(--wpmtt-shadow);
+}
+
+.wpmtt-docs-section h2 {
+    margin: 0 0 20px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid var(--wpmtt-gray-200);
+}
+
+.wpmtt-docs-intro {
+    font-size: 16px;
+    line-height: 1.7;
+    color: var(--wpmtt-gray-600);
+}
+
+.wpmtt-docs-warning {
+    display: flex;
+    gap: 16px;
+    background: #fff8e5;
+    border-left: 4px solid var(--wpmtt-warning);
+    padding: 16px 20px;
+    border-radius: 0 var(--wpmtt-radius) var(--wpmtt-radius) 0;
+    margin: 20px 0;
+}
+
+.wpmtt-docs-warning .dashicons {
+    color: var(--wpmtt-warning);
+    font-size: 24px;
+    flex-shrink: 0;
+}
+
+.wpmtt-docs-warning p {
+    margin: 4px 0 0;
+}
+
+.wpmtt-docs-list {
+    margin: 16px 0;
+    padding-left: 24px;
+}
+
+.wpmtt-docs-list li {
+    margin-bottom: 8px;
+    padding-left: 8px;
+}
+
+.wpmtt-list-check li::marker {
+    content: "+";
+    color: var(--wpmtt-success);
+    font-weight: bold;
+}
+
+.wpmtt-list-cross li::marker {
+    content: "-";
+    color: var(--wpmtt-error);
+    font-weight: bold;
+}
+
+/* Docs Steps */
+.wpmtt-docs-steps {
+    margin: 20px 0;
+}
+
+.wpmtt-docs-step {
+    display: flex;
+    gap: 20px;
+    padding: 20px 0;
+    border-bottom: 1px solid var(--wpmtt-gray-200);
+}
+
+.wpmtt-docs-step:last-child {
+    border-bottom: none;
+}
+
+.wpmtt-step-number {
+    flex: 0 0 48px;
+    height: 48px;
+    background: var(--wpmtt-primary);
+    color: #fff;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    font-weight: 700;
+}
+
+.wpmtt-step-content h4 {
+    margin: 0 0 12px;
+}
+
+.wpmtt-step-content ol {
+    margin: 0;
+    padding-left: 20px;
+}
+
+.wpmtt-step-content li {
+    margin-bottom: 6px;
+}
+
+/* Docs Features */
+.wpmtt-docs-features {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+    margin-top: 20px;
+}
+
+.wpmtt-docs-feature {
+    text-align: center;
+    padding: 24px;
+    background: var(--wpmtt-gray-100);
+    border-radius: var(--wpmtt-radius);
+}
+
+.wpmtt-docs-feature .dashicons {
+    font-size: 40px;
+    width: 40px;
+    height: 40px;
+    color: var(--wpmtt-primary);
+    margin-bottom: 12px;
+}
+
+.wpmtt-docs-feature h4 {
+    margin: 0 0 8px;
+}
+
+.wpmtt-docs-feature p {
+    margin: 0;
+    font-size: 13px;
+    color: var(--wpmtt-gray-600);
+}
+
+/* Code Blocks */
+.wpmtt-docs-code-block {
+    margin: 20px 0;
+    border-radius: var(--wpmtt-radius);
+    overflow: hidden;
+    box-shadow: var(--wpmtt-shadow);
+}
+
+.wpmtt-code-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: var(--wpmtt-gray-900);
+    padding: 10px 16px;
+    color: #fff;
+    font-size: 13px;
+}
+
+.wpmtt-copy-btn {
+    background: rgba(255, 255, 255, 0.1);
+    border: none;
+    color: #fff;
+    padding: 4px 12px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 12px;
+}
+
+.wpmtt-copy-btn:hover {
+    background: rgba(255, 255, 255, 0.2);
+}
+
+.wpmtt-docs-code-block pre {
+    margin: 0;
+    padding: 16px;
+    background: #282c34;
+    overflow-x: auto;
+}
+
+.wpmtt-docs-code-block code {
+    color: #abb2bf;
+    font-family: 'Monaco', 'Consolas', monospace;
+    font-size: 13px;
+    line-height: 1.6;
+}
+
+/* Docs Tables */
+.wpmtt-docs-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 16px 0;
+}
+
+.wpmtt-docs-table th,
+.wpmtt-docs-table td {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid var(--wpmtt-gray-200);
+}
+
+.wpmtt-docs-table th {
+    background: var(--wpmtt-gray-100);
+    font-weight: 600;
+}
+
+.wpmtt-docs-table code {
+    background: var(--wpmtt-gray-100);
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-size: 13px;
+}
+
+/* FAQ */
+.wpmtt-docs-faq {
+    /* FAQ container */
+    margin-top: 0;
+}
+
+.wpmtt-faq-item {
+    padding: 20px 0;
+    border-bottom: 1px solid var(--wpmtt-gray-200);
+}
+
+.wpmtt-faq-item:last-child {
+    border-bottom: none;
+}
+
+.wpmtt-faq-item h4 {
+    margin: 0 0 12px;
+    color: var(--wpmtt-gray-900);
+}
+
+.wpmtt-faq-item p {
+    margin: 0;
+    color: var(--wpmtt-gray-600);
+}
+
+.wpmtt-faq-item ol {
+    margin: 8px 0 0;
+    padding-left: 20px;
+    color: var(--wpmtt-gray-600);
+}
+
+.wpmtt-faq-item ol li {
+    padding-left: 4px;
+}
+
+/* Support */
+.wpmtt-support-box {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+    margin: 20px 0;
+}
+
+.wpmtt-support-item {
+    text-align: center;
+    padding: 24px;
+    background: var(--wpmtt-gray-100);
+    border-radius: var(--wpmtt-radius);
+}
+
+.wpmtt-support-item .dashicons {
+    font-size: 40px;
+    width: 40px;
+    height: 40px;
+    color: var(--wpmtt-primary);
+    margin-bottom: 12px;
+}
+
+.wpmtt-support-item h4 {
+    margin: 0 0 8px;
+}
+
+.wpmtt-support-item p {
+    margin: 0 0 16px;
+    color: var(--wpmtt-gray-600);
+}
+
+.wpmtt-docs-info {
+    background: var(--wpmtt-gray-100);
+    padding: 16px;
+    border-radius: var(--wpmtt-radius);
+    margin-top: 20px;
+}
+
+.wpmtt-docs-info p {
+    margin: 0;
+    font-size: 13px;
+    color: var(--wpmtt-gray-600);
+}
+
+/* ==========================================================================
+   Setup Wizard
+   ========================================================================== */
+.wpmtt-setup-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    z-index: 99999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    overflow-y: auto;
+}
+
+.wpmtt-setup-wizard {
+    background: #fff;
+    border-radius: var(--wpmtt-radius-lg);
+    box-shadow: var(--wpmtt-shadow-lg);
+    max-width: 600px;
+    width: 100%;
+    overflow: hidden;
+    animation: wpmtt-slide-up 0.4s ease-out;
+}
+
+@keyframes wpmtt-slide-up {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.wpmtt-setup-header {
+    text-align: center;
+    padding: 40px 30px 30px;
+    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+}
+
+.wpmtt-setup-logo svg {
+    margin-bottom: 16px;
+}
+
+.wpmtt-setup-header h1 {
+    margin: 0;
+    font-size: 24px;
+    font-weight: 600;
+    color: var(--wpmtt-gray-900);
+    display: block;
+}
+
+.wpmtt-setup-subtitle {
+    margin: 8px 0 0;
+    color: var(--wpmtt-gray-600);
+    font-size: 15px;
+}
+
+/* Progress */
+.wpmtt-setup-progress {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 24px 30px;
+    background: #fff;
+    border-bottom: 1px solid var(--wpmtt-gray-200);
+}
+
+.wpmtt-progress-step {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+}
+
+.wpmtt-progress-step .step-number {
+    width: 36px;
+    height: 36px;
+    background: var(--wpmtt-gray-200);
+    color: var(--wpmtt-gray-600);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 600;
+    font-size: 14px;
+    transition: all 0.3s;
+}
+
+.wpmtt-progress-step.active .step-number {
+    background: var(--wpmtt-primary);
+    color: #fff;
+}
+
+.wpmtt-progress-step .step-label {
+    font-size: 12px;
+    color: var(--wpmtt-gray-600);
+    font-weight: 500;
+}
+
+.wpmtt-progress-step.active .step-label {
+    color: var(--wpmtt-primary);
+}
+
+.wpmtt-progress-line {
+    width: 60px;
+    height: 2px;
+    background: var(--wpmtt-gray-200);
+    margin: 0 12px;
+    margin-bottom: 24px;
+}
+
+.wpmtt-progress-line.active {
+    background: var(--wpmtt-primary);
+}
+
+/* Steps Content */
+.wpmtt-setup-content {
+    padding: 30px;
+}
+
+.wpmtt-setup-step {
+    display: none;
+    animation: wpmtt-fade-in 0.3s ease-out;
+}
+
+.wpmtt-setup-step.active {
+    display: block;
+}
+
+@keyframes wpmtt-fade-in {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+.wpmtt-step-icon {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.wpmtt-step-icon .dashicons {
+    font-size: 48px;
+    width: 48px;
+    height: 48px;
+    color: var(--wpmtt-primary);
+}
+
+.wpmtt-success-icon .dashicons {
+    color: var(--wpmtt-success);
+}
+
+.wpmtt-setup-step h2 {
+    text-align: center;
+    margin: 0 0 24px;
+    font-size: 20px;
+}
+
+/* Info Box */
+.wpmtt-info-box {
+    background: #f0f8ff;
+    border-left: 4px solid var(--wpmtt-primary);
+    padding: 16px 20px;
+    border-radius: 0 var(--wpmtt-radius) var(--wpmtt-radius) 0;
+    margin-bottom: 24px;
+}
+
+.wpmtt-info-box h4 {
+    margin: 0 0 12px;
+    color: var(--wpmtt-primary-dark);
+}
+
+.wpmtt-info-box ol {
+    margin: 0;
+    padding-left: 20px;
+}
+
+.wpmtt-info-box li {
+    margin-bottom: 6px;
+}
+
+.wpmtt-info-box code {
+    background: rgba(0, 136, 204, 0.1);
+    padding: 2px 6px;
+    border-radius: 4px;
+}
+
+/* Input Group */
+.wpmtt-input-group {
+    margin-bottom: 24px;
+}
+
+.wpmtt-input-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 500;
+    color: var(--wpmtt-gray-900);
+}
+
+.wpmtt-input-group input {
+    width: 100%;
+    height: 48px;
+    font-size: 16px;
+    padding: 0 16px;
+    border: 2px solid var(--wpmtt-gray-200);
+    border-radius: var(--wpmtt-radius);
+    transition: border-color 0.2s;
+}
+
+.wpmtt-input-group input:focus {
+    border-color: var(--wpmtt-primary);
+    outline: none;
+}
+
+.wpmtt-input-group input.valid {
+    border-color: var(--wpmtt-success);
+}
+
+.wpmtt-input-group input.invalid {
+    border-color: var(--wpmtt-error);
+}
+
+.wpmtt-input-status {
+    display: block;
+    margin-top: 8px;
+    font-size: 13px;
+}
+
+.wpmtt-input-status.success {
+    color: var(--wpmtt-success);
+}
+
+.wpmtt-input-status.error {
+    color: var(--wpmtt-error);
+}
+
+/* Step Actions */
+.wpmtt-step-actions {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    margin-top: 30px;
+}
+
+.wpmtt-step-actions .button-hero {
+    min-width: 160px;
+    height: 48px;
+    line-height: 46px;
+    font-size: 15px;
+}
+
+.wpmtt-skip-btn {
+    color: var(--wpmtt-gray-600) !important;
+}
+
+/* Success Box */
+.wpmtt-success-box {
+    background: #d4edda;
+    border-radius: var(--wpmtt-radius);
+    padding: 20px;
+    text-align: center;
+    margin-bottom: 24px;
+}
+
+.wpmtt-success-box p {
+    margin: 0 0 16px;
+    color: #155724;
+}
+
+.wpmtt-success-box ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    text-align: left;
+    display: inline-block;
+}
+
+.wpmtt-success-box li {
+    margin-bottom: 8px;
+    color: #155724;
+}
+
+.wpmtt-success-box .dashicons {
+    color: var(--wpmtt-success);
+    margin-right: 8px;
+}
+
+/* Quick Links */
+.wpmtt-quick-links {
+    display: flex;
+    justify-content: center;
+    gap: 16px;
+    flex-wrap: wrap;
+}
+
+.wpmtt-quick-link {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    padding: 16px 24px;
+    background: var(--wpmtt-gray-100);
+    border-radius: var(--wpmtt-radius);
+    text-decoration: none;
+    color: var(--wpmtt-gray-900);
+    transition: all 0.2s;
+}
+
+.wpmtt-quick-link:hover {
+    background: var(--wpmtt-gray-200);
+    transform: translateY(-2px);
+}
+
+.wpmtt-quick-link .dashicons {
+    font-size: 24px;
+    width: 24px;
+    height: 24px;
+    color: var(--wpmtt-primary);
+}
+
+/* Footer */
+.wpmtt-setup-footer {
+    padding: 16px 30px;
+    background: var(--wpmtt-gray-100);
+    text-align: center;
+}
+
+.wpmtt-setup-footer p {
+    margin: 0;
+    font-size: 13px;
+    color: var(--wpmtt-gray-600);
+}
+
+/* ==========================================================================
+   Responsive
+   ========================================================================== */
+@media screen and (max-width: 782px) {
+    .wpmtt-stats-cards {
+        flex-direction: column;
+    }
+
+    .wpmtt-stat-card {
+        width: 100%;
+    }
+
+    .wpmtt-docs-container {
+        flex-direction: column;
+    }
+
+    .wpmtt-docs-sidebar {
+        flex: none;
+        width: 100%;
+    }
+
+    .wpmtt-docs-nav {
+        position: static;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 4px;
+        padding: 12px;
+    }
+
+    .wpmtt-docs-nav-item {
+        padding: 8px 12px;
+        border-left: none;
+        border-radius: 4px;
+    }
+
+    .wpmtt-progress-line {
+        width: 30px;
+    }
+
+    .wpmtt-setup-content {
+        padding: 20px;
+    }
+
+    /* Setup wizard mobile fixes */
+    .wpmtt-setup-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        overflow-y: auto;
+        padding: 10px;
+        align-items: flex-start;
+    }
+
+    .wpmtt-setup-wizard {
+        margin: 10px auto;
+        max-height: none;
+        width: 100%;
+    }
+
+    .wpmtt-setup-header {
+        padding: 24px 16px 20px;
+    }
+
+    .wpmtt-setup-header h1 {
+        font-size: 18px;
+    }
+
+    .wpmtt-setup-subtitle {
+        font-size: 13px;
+    }
+
+    .wpmtt-setup-progress {
+        padding: 16px;
+        flex-wrap: wrap;
+    }
+
+    .wpmtt-progress-step .step-label {
+        font-size: 10px;
+    }
+
+    .wpmtt-step-actions {
+        flex-direction: column;
+    }
+
+    .wpmtt-step-actions .button {
+        width: 100%;
+    }
+
+    .wpmtt-info-box {
+        padding: 12px 16px;
+    }
+
+    .wpmtt-quick-links {
+        flex-direction: column;
+    }
+
+    .wpmtt-quick-link {
+        width: 100%;
+    }
+}
+
+/* ==========================================================================
+   Button Icon Alignment
+   ========================================================================== */
+.button .dashicons,
+.wpmtt-wrap .button .dashicons {
+    vertical-align: middle;
+    margin-right: 4px;
+    margin-top: -2px;
+    font-size: 18px;
+    width: 18px;
+    height: 18px;
+    line-height: 1;
+}
+
+.button-secondary .dashicons {
+    color: inherit;
+}
+
+/* Settings page button alignment */
+.wpmtt-settings-page .button .dashicons {
+    vertical-align: text-bottom;
+    margin-top: 0;
+}
+
+/* Form table button spacing */
+.form-table .button {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.form-table .button .dashicons {
+    margin: 0;
+}
