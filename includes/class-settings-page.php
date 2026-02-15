@@ -37,9 +37,8 @@ class WPMTT_Settings_Page
     {
         $sanitized = [];
 
-        $sanitized['telegram_id'] = isset($input['telegram_id']) ? sanitize_text_field($input['telegram_id']) : '';
         $sanitized['telegram_enabled'] = isset($input['telegram_enabled']) ? (bool) $input['telegram_enabled'] : false;
-        $sanitized['verification_code'] = isset($input['verification_code']) ? sanitize_text_field($input['verification_code']) : '';
+        $sanitized['api_secret'] = isset($input['api_secret']) ? sanitize_text_field($input['api_secret']) : '';
         $sanitized['log_retention_days'] = isset($input['log_retention_days']) ? intval($input['log_retention_days']) : 30;
 
         return $sanitized;
@@ -50,9 +49,8 @@ class WPMTT_Settings_Page
      */
     public static function render()
     {
-        $telegram_id = WP_Mail_To_Telegram::get_option('telegram_id', '');
         $telegram_enabled = WP_Mail_To_Telegram::get_option('telegram_enabled', true);
-        $verification_code = WP_Mail_To_Telegram::get_option('verification_code', '');
+        $api_secret = WP_Mail_To_Telegram::get_option('api_secret', '');
         $log_retention = WP_Mail_To_Telegram::get_option('log_retention_days', 30);
         $is_configured = WP_Mail_To_Telegram::is_configured();
         ?>
@@ -106,31 +104,17 @@ class WPMTT_Settings_Page
                         </tr>
                         <tr>
                             <th scope="row">
-                                <label for="wpmtt_telegram_id"><?php _e('Telegram ID', 'wp-mail-to-telegram'); ?></label>
+                                <label><?php _e('API Connection', 'wp-mail-to-telegram'); ?></label>
                             </th>
                             <td>
-                                <input type="text" id="wpmtt_telegram_id" name="wpmtt_settings[telegram_id]"
-                                    value="<?php echo esc_attr($telegram_id); ?>" class="regular-text">
-                                <p class="description">
-                                    <?php _e('Your numeric Telegram ID.', 'wp-mail-to-telegram'); ?>
-                                    <a href="https://t.me/ShowMyTelegramIDBot"
-                                        target="_blank"><?php _e('How to get it?', 'wp-mail-to-telegram'); ?></a>
-                                </p>
-                            </td>
-                        </tr>
-                        <tr>
-                            <th scope="row">
-                                <label><?php _e('Verification Code', 'wp-mail-to-telegram'); ?></label>
-                            </th>
-                            <td>
-                                <?php if ($verification_code): ?>
-                                    <code class="wpmtt-verification-code"><?php echo esc_html($verification_code); ?></code>
+                                <?php if ($api_secret): ?>
+                                    <code class="wpmtt-verification-code"><?php echo esc_html('***' . substr($api_secret, -6)); ?></code>
                                     <span class="wpmtt-status wpmtt-status-success">
                                         <span class="dashicons dashicons-yes-alt"></span>
                                         <?php _e('Connected', 'wp-mail-to-telegram'); ?>
                                     </span>
-                                    <input type="hidden" name="wpmtt_settings[verification_code]"
-                                        value="<?php echo esc_attr($verification_code); ?>">
+                                    <input type="hidden" name="wpmtt_settings[api_secret]"
+                                        value="<?php echo esc_attr($api_secret); ?>">
                                 <?php else: ?>
                                     <span class="wpmtt-status wpmtt-status-warning">
                                         <span class="dashicons dashicons-warning"></span>

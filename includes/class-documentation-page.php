@@ -86,16 +86,15 @@ class WPMTT_Documentation_Page
                             <div class="wpmtt-docs-step">
                                 <span class="wpmtt-step-number">1</span>
                                 <div class="wpmtt-step-content">
-                                    <h4><?php _e('Get Your Telegram ID', 'wp-mail-to-telegram'); ?></h4>
+                                    <h4><?php _e('Get a Verification Code from Telegram', 'wp-mail-to-telegram'); ?></h4>
                                     <ol>
                                         <li><?php _e('Open Telegram', 'wp-mail-to-telegram'); ?></li>
                                         <li><?php _e('Find the bot', 'wp-mail-to-telegram'); ?> <a
-                                                href="https://t.me/ShowMyTelegramIDBot" target="_blank">@ShowMyTelegramIDBot</a>
+                                                href="https://t.me/WPMailToTelegramBot" target="_blank">@WPMailToTelegramBot</a>
                                         </li>
-                                        <li><?php _e('Press Start and send the command', 'wp-mail-to-telegram'); ?>
-                                            <code>/chatid</code>
-                                        </li>
-                                        <li><?php _e('Copy the numeric ID you receive', 'wp-mail-to-telegram'); ?></li>
+                                        <li><?php _e('Press Start', 'wp-mail-to-telegram'); ?></li>
+                                        <li><?php _e('Send the command', 'wp-mail-to-telegram'); ?> <code>/addsite</code></li>
+                                        <li><?php _e('Copy the 6-digit verification code you receive', 'wp-mail-to-telegram'); ?></li>
                                     </ol>
                                 </div>
                             </div>
@@ -103,23 +102,8 @@ class WPMTT_Documentation_Page
                             <div class="wpmtt-docs-step">
                                 <span class="wpmtt-step-number">2</span>
                                 <div class="wpmtt-step-content">
-                                    <h4><?php _e('Connect the Bot to Your Site', 'wp-mail-to-telegram'); ?></h4>
-                                    <ol>
-                                        <li><?php _e('Find the bot', 'wp-mail-to-telegram'); ?> <a
-                                                href="https://t.me/WPMailToTelegramBot" target="_blank">@WPMailToTelegramBot</a>
-                                        </li>
-                                        <li><?php _e('Press Start', 'wp-mail-to-telegram'); ?></li>
-                                        <li><?php _e('Send the command', 'wp-mail-to-telegram'); ?> <code>/addsite</code></li>
-                                        <li><?php _e('Copy the verification code you receive', 'wp-mail-to-telegram'); ?></li>
-                                    </ol>
-                                </div>
-                            </div>
-
-                            <div class="wpmtt-docs-step">
-                                <span class="wpmtt-step-number">3</span>
-                                <div class="wpmtt-step-content">
-                                    <h4><?php _e('Complete the Setup Wizard', 'wp-mail-to-telegram'); ?></h4>
-                                    <p><?php _e('Complete the plugin setup wizard by entering your Telegram ID and verification code.', 'wp-mail-to-telegram'); ?>
+                                    <h4><?php _e('Enter the Code in the Setup Wizard', 'wp-mail-to-telegram'); ?></h4>
+                                    <p><?php _e('Enter the 6-digit verification code in the setup wizard and click Verify. That\'s it!', 'wp-mail-to-telegram'); ?>
                                     </p>
                                     <a href="<?php echo admin_url('admin.php?page=wpmtt-setup'); ?>"
                                         class="button button-primary"><?php _e('Run Setup Wizard', 'wp-mail-to-telegram'); ?></a>
@@ -321,7 +305,8 @@ class WPMTT_Documentation_Page
                                 <ol>
                                     <li><?php _e('Is Telegram sending enabled in the plugin settings?', 'wp-mail-to-telegram'); ?>
                                     </li>
-                                    <li><?php _e('Is the Telegram ID entered correctly?', 'wp-mail-to-telegram'); ?></li>
+                                    <li><?php _e('Is the plugin configured? (Settings page should show "Connected")', 'wp-mail-to-telegram'); ?>
+                                    </li>
                                     <li><?php _e('Did you start the @WPMailToTelegramBot with the /start command?', 'wp-mail-to-telegram'); ?>
                                     </li>
                                     <li><?php _e('Send a test message from the plugin settings', 'wp-mail-to-telegram'); ?></li>

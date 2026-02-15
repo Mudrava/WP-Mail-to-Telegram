@@ -1,0 +1,922 @@
+# Ukrainian translation for WP Mail to Telegram plugin.
+# Copyright (C) 2025 Mudrava
+# This file is distributed under the same license as the WP Mail to Telegram package.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: WP Mail to Telegram 1.0.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2025-06-15 00:00+0000\n"
+"PO-Revision-Date: 2025-06-15 00:00+0000\n"
+"Last-Translator: Mudrava <info@mudrava.com>\n"
+"Language-Team: Ukrainian\n"
+"Language: uk\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<12 || n%100>14) ? 1 : 2);\n"
+"X-Generator: GitHub Copilot\n"
+
+#. Plugin Name
+msgid "WP Mail to Telegram"
+msgstr "WP Mail to Telegram"
+
+#: wp-mail-to-telegram.php
+msgid "WP Mail to Telegram requires PHP 7.4 or higher."
+msgstr "WP Mail to Telegram потребує PHP 7.4 або новішу версію."
+
+#: wp-mail-to-telegram.php includes/class-admin-pages.php includes/class-settings-page.php includes/class-setup-wizard.php includes/class-documentation-page.php
+msgid "Settings"
+msgstr "Налаштування"
+
+#: wp-mail-to-telegram.php includes/class-documentation-page.php
+msgid "Documentation"
+msgstr "Документація"
+
+#: wp-mail-to-telegram.php
+msgid "WP Mail to Telegram is not configured"
+msgstr "WP Mail to Telegram не налаштовано"
+
+#: includes/class-admin-pages.php
+msgid "Mail to TG"
+msgstr "Пошта в TG"
+
+#: includes/class-admin-pages.php includes/class-email-log-page.php includes/class-settings-page.php includes/class-setup-wizard.php includes/class-documentation-page.php
+msgid "Email Log"
+msgstr "Журнал листів"
+
+#: includes/class-admin-pages.php
+msgid "View Email"
+msgstr "Переглянути лист"
+
+#: includes/class-admin-pages.php includes/class-setup-wizard.php
+msgid "Setup Wizard"
+msgstr "Майстер налаштування"
+
+#: includes/class-admin-pages.php
+msgid "Are you sure you want to delete the selected emails?"
+msgstr "Ви впевнені, що хочете видалити вибрані листи?"
+
+#: includes/class-admin-pages.php
+msgid "Are you sure you want to clear all logs? This action cannot be undone."
+msgstr "Ви впевнені, що хочете очистити всі записи? Цю дію неможливо скасувати."
+
+#: includes/class-admin-pages.php
+msgid "Are you sure you want to reset all settings? This action cannot be undone."
+msgstr "Ви впевнені, що хочете скинути всі налаштування? Цю дію неможливо скасувати."
+
+#: includes/class-admin-pages.php
+msgid "Loading..."
+msgstr "Завантаження..."
+
+#: includes/class-admin-pages.php
+msgid "An error occurred"
+msgstr "Сталася помилка"
+
+#: includes/class-admin-pages.php
+msgid "Success!"
+msgstr "Успішно!"
+
+#: includes/class-admin-pages.php
+msgid "Validating..."
+msgstr "Перевірка..."
+
+#: includes/class-admin-pages.php
+msgid "Connecting..."
+msgstr "З'єднання..."
+
+#: includes/class-admin-pages.php
+msgid "Sending..."
+msgstr "Надсилання..."
+
+#: includes/class-admin-pages.php
+msgid "Copied!"
+msgstr "Скопійовано!"
+
+#: includes/class-admin-pages.php
+msgid "Saved"
+msgstr "Збережено"
+
+#: includes/class-settings-page.php
+msgid "Plugin is not configured."
+msgstr "Плагін не налаштовано."
+
+#: includes/class-settings-page.php
+msgid "Run the setup wizard"
+msgstr "Запустити майстер налаштування"
+
+#: includes/class-settings-page.php
+msgid "Settings saved."
+msgstr "Налаштування збережено."
+
+#: includes/class-settings-page.php includes/class-documentation-page.php
+msgid "Telegram"
+msgstr "Telegram"
+
+#: includes/class-settings-page.php
+msgid "Send to Telegram"
+msgstr "Надсилати в Telegram"
+
+#: includes/class-settings-page.php
+msgid "Enable/disable sending notifications to Telegram"
+msgstr "Увімкнути/вимкнути надсилання сповіщень у Telegram"
+
+#: includes/class-settings-page.php
+msgid "API Connection"
+msgstr "API-з'єднання"
+
+#: includes/class-settings-page.php
+msgid "Connected"
+msgstr "Під'єднано"
+
+#: includes/class-settings-page.php
+msgid "Not configured"
+msgstr "Не налаштовано"
+
+#: includes/class-settings-page.php
+msgid "Configure"
+msgstr "Налаштувати"
+
+#: includes/class-settings-page.php
+msgid "Test Connection"
+msgstr "Перевірити з'єднання"
+
+#: includes/class-settings-page.php
+msgid "Send Test Message"
+msgstr "Надіслати тестове повідомлення"
+
+#: includes/class-settings-page.php
+msgid "Send a test message to Telegram to verify the connection"
+msgstr "Надіслати тестове повідомлення в Telegram для перевірки з'єднання"
+
+#: includes/class-settings-page.php
+msgid "Log Retention"
+msgstr "Зберігання журналу"
+
+#: includes/class-settings-page.php
+msgid "7 days"
+msgstr "7 днів"
+
+#: includes/class-settings-page.php
+msgid "14 days"
+msgstr "14 днів"
+
+#: includes/class-settings-page.php
+msgid "30 days"
+msgstr "30 днів"
+
+#: includes/class-settings-page.php
+msgid "60 days"
+msgstr "60 днів"
+
+#: includes/class-settings-page.php
+msgid "90 days"
+msgstr "90 днів"
+
+#: includes/class-settings-page.php
+msgid "Forever"
+msgstr "Назавжди"
+
+#: includes/class-settings-page.php
+msgid "Automatically delete old log entries"
+msgstr "Автоматично видаляти старі записи журналу"
+
+#: includes/class-settings-page.php
+msgid "Clear Logs"
+msgstr "Очистити журнал"
+
+#: includes/class-settings-page.php
+msgid "Clear All Logs"
+msgstr "Очистити весь журнал"
+
+#: includes/class-settings-page.php
+msgid "Delete all email log entries. This action cannot be undone."
+msgstr "Видалити всі записи журналу листів. Цю дію неможливо скасувати."
+
+#: includes/class-settings-page.php includes/class-documentation-page.php
+msgid "Test Email"
+msgstr "Тестовий лист"
+
+#: includes/class-settings-page.php
+msgid "Send Test Email"
+msgstr "Надіслати тестовий лист"
+
+#: includes/class-settings-page.php includes/class-documentation-page.php
+msgid "Send"
+msgstr "Надіслати"
+
+#: includes/class-settings-page.php
+msgid "Send a test email to verify logging and Telegram forwarding"
+msgstr "Надіслати тестовий лист для перевірки журналювання та пересилання в Telegram"
+
+#: includes/class-settings-page.php
+msgid "Save Settings"
+msgstr "Зберегти налаштування"
+
+#: includes/class-settings-page.php
+msgid "Danger Zone"
+msgstr "Небезпечна зона"
+
+#: includes/class-settings-page.php
+msgid "Reset Settings"
+msgstr "Скинути налаштування"
+
+#: includes/class-settings-page.php
+msgid "Reset All Settings"
+msgstr "Скинути всі налаштування"
+
+#: includes/class-settings-page.php
+msgid "Delete all plugin settings and start fresh. This action cannot be undone."
+msgstr "Видалити всі налаштування плагіна та почати спочатку. Цю дію неможливо скасувати."
+
+#: includes/class-settings-page.php includes/class-setup-wizard.php
+msgid "Permission denied"
+msgstr "Доступ заборонено"
+
+#: includes/class-settings-page.php
+msgid "Test message sent!"
+msgstr "Тестове повідомлення надіслано!"
+
+#: includes/class-settings-page.php
+msgid "Invalid email address"
+msgstr "Некоректна email-адреса"
+
+#: includes/class-settings-page.php
+#, php-format
+msgid "[%s] Test Email from WP Mail to Telegram"
+msgstr "[%s] Тестовий лист від WP Mail to Telegram"
+
+#: includes/class-settings-page.php
+#, php-format
+msgid "Hello!\n\nThis is a test email from the WP Mail to Telegram plugin.\n\nIf you received this email, your WordPress email sending is working correctly.\n\nSite: %s\nURL: %s\nDate: %s\n\n--\nWP Mail to Telegram"
+msgstr "Привіт!\n\nЦе тестовий лист від плагіна WP Mail to Telegram.\n\nЯкщо ви отримали цей лист, надсилання листів у вашому WordPress працює коректно.\n\nСайт: %s\nURL: %s\nДата: %s\n\n--\nWP Mail to Telegram"
+
+#: includes/class-settings-page.php
+#, php-format
+msgid "Test email sent to %s"
+msgstr "Тестовий лист надіслано на %s"
+
+#: includes/class-settings-page.php
+msgid "Failed to send email"
+msgstr "Не вдалося надіслати лист"
+
+#: includes/class-settings-page.php
+msgid "All logs cleared successfully"
+msgstr "Усі записи журналу успішно видалено"
+
+#: includes/class-settings-page.php
+msgid "Failed to clear logs"
+msgstr "Не вдалося очистити журнал"
+
+#: includes/class-settings-page.php
+msgid "Settings reset successfully. Redirecting to setup wizard..."
+msgstr "Налаштування успішно скинуто. Перенаправлення на майстер налаштування..."
+
+#: includes/class-email-detail-page.php
+msgid "Email ID not provided"
+msgstr "Не вказано ID листа"
+
+#: includes/class-email-detail-page.php
+msgid "Email not found"
+msgstr "Лист не знайдено"
+
+#: includes/class-email-detail-page.php
+msgid "Back to Log"
+msgstr "Назад до журналу"
+
+#: includes/class-email-detail-page.php includes/class-email-log-page.php
+msgid "(No Subject)"
+msgstr "(Без теми)"
+
+#: includes/class-email-detail-page.php
+msgid "From:"
+msgstr "Від:"
+
+#: includes/class-email-detail-page.php
+msgid "To:"
+msgstr "Кому:"
+
+#: includes/class-email-detail-page.php
+msgid "Date:"
+msgstr "Дата:"
+
+#: includes/class-email-detail-page.php
+msgid "Email Status:"
+msgstr "Статус листа:"
+
+#: includes/class-email-detail-page.php
+msgid "Telegram:"
+msgstr "Telegram:"
+
+#: includes/class-email-detail-page.php
+msgid "Preview"
+msgstr "Перегляд"
+
+#: includes/class-email-detail-page.php
+msgid "Source Code"
+msgstr "Вихідний код"
+
+#: includes/class-email-detail-page.php
+msgid "Headers"
+msgstr "Заголовки"
+
+#: includes/class-email-detail-page.php includes/class-documentation-page.php
+msgid "Copy"
+msgstr "Копіювати"
+
+#: includes/class-email-detail-page.php
+msgid "No headers found"
+msgstr "Заголовки не знайдено"
+
+#: includes/class-email-detail-page.php
+msgid "Attachments"
+msgstr "Вкладення"
+
+#: includes/class-email-detail-page.php
+msgid "Error Information"
+msgstr "Інформація про помилку"
+
+#: includes/class-email-detail-page.php
+msgid "Email Error:"
+msgstr "Помилка листа:"
+
+#: includes/class-email-detail-page.php
+msgid "Telegram Error:"
+msgstr "Помилка Telegram:"
+
+#: includes/class-email-detail-page.php includes/class-email-log-page.php
+msgid "Sent"
+msgstr "Надіслано"
+
+#: includes/class-email-detail-page.php includes/class-email-log-page.php
+msgid "Failed"
+msgstr "Помилка"
+
+#: includes/class-email-detail-page.php includes/class-email-log-page.php
+msgid "Pending"
+msgstr "Очікування"
+
+#: includes/class-email-detail-page.php
+msgid "Not Sent"
+msgstr "Не надіслано"
+
+#: includes/class-email-log-page.php
+#, php-format
+msgid "Deleted %d email(s)"
+msgstr "Видалено %d лист(ів)"
+
+#: includes/class-email-log-page.php
+msgid "Total Emails"
+msgstr "Всього листів"
+
+#: includes/class-email-log-page.php
+msgid "To Telegram"
+msgstr "У Telegram"
+
+#: includes/class-email-log-page.php
+msgid "Today"
+msgstr "Сьогодні"
+
+#: includes/class-email-log-page.php
+msgid "All Statuses"
+msgstr "Усі статуси"
+
+#: includes/class-email-log-page.php
+msgid "Search..."
+msgstr "Пошук..."
+
+#: includes/class-email-log-page.php
+msgid "Filter"
+msgstr "Фільтр"
+
+#: includes/class-email-log-page.php
+msgid "Reset"
+msgstr "Скинути"
+
+#: includes/class-email-log-page.php
+msgid "Bulk Actions"
+msgstr "Масові дії"
+
+#: includes/class-email-log-page.php
+msgid "Delete"
+msgstr "Видалити"
+
+#: includes/class-email-log-page.php
+msgid "Apply"
+msgstr "Застосувати"
+
+#: includes/class-email-log-page.php
+msgid "Date"
+msgstr "Дата"
+
+#: includes/class-email-log-page.php
+msgid "To"
+msgstr "Кому"
+
+#: includes/class-email-log-page.php
+msgid "Subject"
+msgstr "Тема"
+
+#: includes/class-email-log-page.php
+msgid "Email"
+msgstr "Email"
+
+#: includes/class-email-log-page.php
+msgid "Actions"
+msgstr "Дії"
+
+#: includes/class-email-log-page.php
+msgid "No emails found yet"
+msgstr "Листів ще немає"
+
+#: includes/class-email-log-page.php
+msgid "View"
+msgstr "Переглянути"
+
+#: includes/class-email-log-page.php
+msgid "Sent to Telegram"
+msgstr "Надіслано в Telegram"
+
+#: includes/class-email-logger.php
+msgid "Unknown error"
+msgstr "Невідома помилка"
+
+#: includes/class-api-client.php
+msgid "API secret not found. Please reconnect the site."
+msgstr "API-ключ не знайдено. Будь ласка, повторно під'єднайте сайт."
+
+#: includes/class-api-client.php
+msgid "Failed to parse API response"
+msgstr "Не вдалося розібрати відповідь API"
+
+#: includes/class-api-client.php
+msgid "API Error"
+msgstr "Помилка API"
+
+#: includes/class-telegram-sender.php
+msgid "Plugin is not configured"
+msgstr "Плагін не налаштовано"
+
+#: includes/class-setup-wizard.php
+msgid "Welcome to WP Mail to Telegram"
+msgstr "Ласкаво просимо до WP Mail to Telegram"
+
+#: includes/class-setup-wizard.php
+msgid "Connect your site to Telegram in one simple step"
+msgstr "Під'єднайте свій сайт до Telegram за один простий крок"
+
+#: includes/class-setup-wizard.php
+msgid "Connect Bot"
+msgstr "Під'єднати бота"
+
+#: includes/class-setup-wizard.php
+msgid "Complete"
+msgstr "Готово"
+
+#: includes/class-setup-wizard.php
+msgid "Connect the Bot to Your Website"
+msgstr "Під'єднайте бота до вашого сайту"
+
+#: includes/class-setup-wizard.php
+msgid "How to get a verification code:"
+msgstr "Як отримати код підтвердження:"
+
+#: includes/class-setup-wizard.php
+msgid "Open Telegram and find the bot"
+msgstr "Відкрийте Telegram і знайдіть бота"
+
+#: includes/class-setup-wizard.php
+msgid "Press <strong>Start</strong> to launch the bot"
+msgstr "Натисніть <strong>Start</strong>, щоб запустити бота"
+
+#: includes/class-setup-wizard.php
+msgid "Send the command"
+msgstr "Надішліть команду"
+
+#: includes/class-setup-wizard.php
+msgid "The bot will give you a 6-digit verification code — enter it below"
+msgstr "Бот надасть вам 6-значний код підтвердження — введіть його нижче"
+
+#: includes/class-setup-wizard.php
+msgid "Verification Code from Bot"
+msgstr "Код підтвердження від бота"
+
+#: includes/class-setup-wizard.php
+msgid "Set Up Later"
+msgstr "Налаштувати пізніше"
+
+#: includes/class-setup-wizard.php
+msgid "Connect"
+msgstr "Під'єднати"
+
+#: includes/class-setup-wizard.php
+msgid "Awesome! All Set Up!"
+msgstr "Чудово! Все налаштовано!"
+
+#: includes/class-setup-wizard.php
+msgid "All email notifications from your website will now be automatically sent to your Telegram."
+msgstr "Усі email-сповіщення з вашого сайту тепер автоматично надсилатимуться у ваш Telegram."
+
+#: includes/class-setup-wizard.php
+msgid "Contact form submissions"
+msgstr "Повідомлення з контактних форм"
+
+#: includes/class-setup-wizard.php
+msgid "Order notifications"
+msgstr "Сповіщення про замовлення"
+
+#: includes/class-setup-wizard.php includes/class-documentation-page.php
+msgid "WordPress system notifications"
+msgstr "Системні сповіщення WordPress"
+
+#: includes/class-setup-wizard.php
+msgid "Go to Email Log"
+msgstr "Перейти до журналу листів"
+
+#: includes/class-setup-wizard.php
+msgid "Important:"
+msgstr "Важливо:"
+
+#: includes/class-setup-wizard.php
+msgid "This plugin does NOT replace email. It only sends copies to the administrator via Telegram."
+msgstr "Цей плагін НЕ замінює email. Він лише надсилає копії адміністратору через Telegram."
+
+#: includes/class-setup-wizard.php
+msgid "Please enter the verification code"
+msgstr "Будь ласка, введіть код підтвердження"
+
+#: includes/class-setup-wizard.php
+msgid "Verification code must be a 6-digit number"
+msgstr "Код підтвердження має бути 6-значним числом"
+
+#: includes/class-setup-wizard.php
+msgid "Server did not return an API secret. Please update the bot."
+msgstr "Сервер не повернув API-ключ. Будь ласка, оновіть бота."
+
+#: includes/class-setup-wizard.php
+msgid "Bot connected successfully!"
+msgstr "Бот успішно під'єднано!"
+
+#: includes/class-setup-wizard.php
+msgid "Verification failed"
+msgstr "Помилка підтвердження"
+
+#: includes/class-developer-api.php
+msgid "WP Mail to Telegram - Status"
+msgstr "WP Mail to Telegram — Статус"
+
+#: includes/class-developer-api.php
+msgid "Version:"
+msgstr "Версія:"
+
+#: includes/class-developer-api.php
+msgid "Configured:"
+msgstr "Налаштовано:"
+
+#: includes/class-developer-api.php
+msgid "Yes"
+msgstr "Так"
+
+#: includes/class-developer-api.php
+msgid "No"
+msgstr "Ні"
+
+#: includes/class-developer-api.php
+msgid "Telegram Enabled:"
+msgstr "Telegram увімкнено:"
+
+#: includes/class-developer-api.php
+msgid "API Connected:"
+msgstr "API під'єднано:"
+
+#: includes/class-documentation-page.php
+msgid "About"
+msgstr "Про плагін"
+
+#: includes/class-documentation-page.php
+msgid "Setup"
+msgstr "Налаштування"
+
+#: includes/class-documentation-page.php
+msgid "Features"
+msgstr "Функції"
+
+#: includes/class-documentation-page.php
+msgid "Developer API"
+msgstr "API для розробників"
+
+#: includes/class-documentation-page.php
+msgid "FAQ"
+msgstr "FAQ"
+
+#: includes/class-documentation-page.php
+msgid "Support"
+msgstr "Підтримка"
+
+#: includes/class-documentation-page.php
+msgid "About WP Mail to Telegram"
+msgstr "Про WP Mail to Telegram"
+
+#: includes/class-documentation-page.php
+msgid "WP Mail to Telegram is a plugin that sends copies of all outgoing emails from your WordPress site directly to your Telegram. Perfect for receiving form submissions, order notifications, and system messages without having to constantly check your email inbox."
+msgstr "WP Mail to Telegram — це плагін, який надсилає копії всіх вихідних листів з вашого сайту WordPress безпосередньо у ваш Telegram. Ідеально підходить для отримання повідомлень із форм, сповіщень про замовлення та системних повідомлень без необхідності постійно перевіряти електронну пошту."
+
+#: includes/class-documentation-page.php
+msgid "Important to understand:"
+msgstr "Важливо розуміти:"
+
+#: includes/class-documentation-page.php
+msgid "This plugin does NOT replace email. It only sends copies to the site administrator via Telegram. Your website users will still receive emails normally. This plugin is designed ONLY for notifying the site administrator."
+msgstr "Цей плагін НЕ замінює email. Він лише надсилає копії адміністратору сайту через Telegram. Користувачі вашого сайту продовжать отримувати листи як зазвичай. Цей плагін призначений ЛИШЕ для сповіщення адміністратора сайту."
+
+#: includes/class-documentation-page.php
+msgid "Perfect for:"
+msgstr "Ідеально підходить для:"
+
+#: includes/class-documentation-page.php
+msgid "Receiving contact form submissions"
+msgstr "Отримання повідомлень з контактних форм"
+
+#: includes/class-documentation-page.php
+msgid "Order notifications from e-commerce stores"
+msgstr "Сповіщення про замовлення з інтернет-магазинів"
+
+#: includes/class-documentation-page.php
+msgid "Monitoring user registrations"
+msgstr "Моніторинг реєстрацій користувачів"
+
+#: includes/class-documentation-page.php
+msgid "Alerts from other plugins"
+msgstr "Сповіщення від інших плагінів"
+
+#: includes/class-documentation-page.php
+msgid "NOT suitable for:"
+msgstr "НЕ підходить для:"
+
+#: includes/class-documentation-page.php
+msgid "Replacing email newsletters to users"
+msgstr "Заміни email-розсилок для користувачів"
+
+#: includes/class-documentation-page.php
+msgid "Sending messages to customers via Telegram"
+msgstr "Надсилання повідомлень клієнтам через Telegram"
+
+#: includes/class-documentation-page.php
+msgid "Mass email campaigns"
+msgstr "Масових email-кампаній"
+
+#: includes/class-documentation-page.php
+msgid "Plugin Setup"
+msgstr "Налаштування плагіна"
+
+#: includes/class-documentation-page.php
+msgid "Get a Verification Code from Telegram"
+msgstr "Отримайте код підтвердження в Telegram"
+
+#: includes/class-documentation-page.php
+msgid "Open Telegram"
+msgstr "Відкрийте Telegram"
+
+#: includes/class-documentation-page.php
+msgid "Find the bot"
+msgstr "Знайдіть бота"
+
+#: includes/class-documentation-page.php
+msgid "Press Start"
+msgstr "Натисніть Start"
+
+#: includes/class-documentation-page.php
+msgid "Copy the 6-digit verification code you receive"
+msgstr "Скопіюйте отриманий 6-значний код підтвердження"
+
+#: includes/class-documentation-page.php
+msgid "Enter the Code in the Setup Wizard"
+msgstr "Введіть код у майстрі налаштування"
+
+#: includes/class-documentation-page.php
+msgid "Enter the 6-digit verification code in the setup wizard and click Verify. That's it!"
+msgstr "Введіть 6-значний код підтвердження в майстрі налаштування та натисніть «Підтвердити». Ось і все!"
+
+#: includes/class-documentation-page.php
+msgid "Run Setup Wizard"
+msgstr "Запустити майстер налаштування"
+
+#: includes/class-documentation-page.php
+msgid "Email Preview"
+msgstr "Попередній перегляд листів"
+
+#: includes/class-documentation-page.php
+msgid "All sent emails are saved in a log with the ability to view, search, and filter."
+msgstr "Усі надіслані листи зберігаються в журналі з можливістю перегляду, пошуку та фільтрації."
+
+#: includes/class-documentation-page.php
+msgid "View emails in preview or source code mode, including headers and attachments."
+msgstr "Перегляд листів у режимі попереднього перегляду або вихідного коду, включно із заголовками та вкладеннями."
+
+#: includes/class-documentation-page.php
+msgid "Telegram Notifications"
+msgstr "Сповіщення в Telegram"
+
+#: includes/class-documentation-page.php
+msgid "Instant notifications for every email directly in your Telegram with a link to the full version."
+msgstr "Миттєві сповіщення про кожен лист прямо у ваш Telegram з посиланням на повну версію."
+
+#: includes/class-documentation-page.php
+msgid "Statistics"
+msgstr "Статистика"
+
+#: includes/class-documentation-page.php
+msgid "Track the number of sent emails, errors, and Telegram delivery status."
+msgstr "Відстежуйте кількість надісланих листів, помилки та статус доставки в Telegram."
+
+#: includes/class-documentation-page.php
+msgid "The plugin provides a simple function to send custom messages to Telegram from your code."
+msgstr "Плагін надає просту функцію для надсилання користувацьких повідомлень у Telegram із вашого коду."
+
+#: includes/class-documentation-page.php
+msgid "Function wpmtt_send_message()"
+msgstr "Функція wpmtt_send_message()"
+
+#: includes/class-documentation-page.php
+msgid "Syntax"
+msgstr "Синтаксис"
+
+#: includes/class-documentation-page.php
+msgid "Parameters:"
+msgstr "Параметри:"
+
+#: includes/class-documentation-page.php
+msgid "Parameter"
+msgstr "Параметр"
+
+#: includes/class-documentation-page.php
+msgid "Type"
+msgstr "Тип"
+
+#: includes/class-documentation-page.php
+msgid "Description"
+msgstr "Опис"
+
+#: includes/class-documentation-page.php
+msgid "The message text to send. Supports Telegram HTML formatting."
+msgstr "Текст повідомлення для надсилання. Підтримує HTML-форматування Telegram."
+
+#: includes/class-documentation-page.php
+msgid "Additional options (optional)."
+msgstr "Додаткові параметри (необов'язково)."
+
+#: includes/class-documentation-page.php
+msgid "Options:"
+msgstr "Параметри:"
+
+#: includes/class-documentation-page.php
+msgid "Key"
+msgstr "Ключ"
+
+#: includes/class-documentation-page.php
+msgid "Default"
+msgstr "За замовчуванням"
+
+#: includes/class-documentation-page.php
+msgid "Parse mode: HTML or Markdown"
+msgstr "Режим розмітки: HTML або Markdown"
+
+#: includes/class-documentation-page.php
+msgid "Returns:"
+msgstr "Повертає:"
+
+#: includes/class-documentation-page.php
+msgid "on success or"
+msgstr "при успіху або"
+
+#: includes/class-documentation-page.php
+msgid "on failure."
+msgstr "при помилці."
+
+#: includes/class-documentation-page.php
+msgid "Usage Examples"
+msgstr "Приклади використання"
+
+#: includes/class-documentation-page.php
+msgid "Simple Message"
+msgstr "Просте повідомлення"
+
+#: includes/class-documentation-page.php
+msgid "Formatted Message"
+msgstr "Форматоване повідомлення"
+
+#: includes/class-documentation-page.php
+msgid "WooCommerce Order Notification"
+msgstr "Сповіщення про замовлення WooCommerce"
+
+#: includes/class-documentation-page.php
+msgid "Error Handling"
+msgstr "Обробка помилок"
+
+#: includes/class-documentation-page.php
+msgid "Supported Telegram HTML Tags"
+msgstr "Підтримувані HTML-теги Telegram"
+
+#: includes/class-documentation-page.php
+msgid "- bold text"
+msgstr "- жирний текст"
+
+#: includes/class-documentation-page.php
+msgid "- italic text"
+msgstr "- курсивний текст"
+
+#: includes/class-documentation-page.php
+msgid "- underlined text"
+msgstr "- підкреслений текст"
+
+#: includes/class-documentation-page.php
+msgid "- strikethrough text"
+msgstr "- закреслений текст"
+
+#: includes/class-documentation-page.php
+msgid "- monospace text"
+msgstr "- моноширинний текст"
+
+#: includes/class-documentation-page.php
+msgid "- code block"
+msgstr "- блок коду"
+
+#: includes/class-documentation-page.php
+msgid "- link"
+msgstr "- посилання"
+
+#: includes/class-documentation-page.php
+msgid "Frequently Asked Questions"
+msgstr "Часті запитання"
+
+#: includes/class-documentation-page.php
+msgid "Emails are not arriving in Telegram. What should I do?"
+msgstr "Листи не приходять у Telegram. Що робити?"
+
+#: includes/class-documentation-page.php
+msgid "Check:"
+msgstr "Перевірте:"
+
+#: includes/class-documentation-page.php
+msgid "Is Telegram sending enabled in the plugin settings?"
+msgstr "Чи увімкнено надсилання в Telegram у налаштуваннях плагіна?"
+
+#: includes/class-documentation-page.php
+msgid "Is the plugin configured? (Settings page should show \"Connected\")"
+msgstr "Чи налаштовано плагін? (На сторінці налаштувань має бути «Під'єднано»)"
+
+#: includes/class-documentation-page.php
+msgid "Did you start the @WPMailToTelegramBot with the /start command?"
+msgstr "Чи запустили ви @WPMailToTelegramBot командою /start?"
+
+#: includes/class-documentation-page.php
+msgid "Send a test message from the plugin settings"
+msgstr "Надішліть тестове повідомлення з налаштувань плагіна"
+
+#: includes/class-documentation-page.php
+msgid "Can my customers receive emails in Telegram?"
+msgstr "Чи можуть мої клієнти отримувати листи в Telegram?"
+
+#: includes/class-documentation-page.php
+msgid "No. This plugin is designed only for the site administrator. Customers receive emails normally via email."
+msgstr "Ні. Цей плагін призначений лише для адміністратора сайту. Клієнти отримують листи звичайним чином."
+
+#: includes/class-documentation-page.php
+msgid "Does the plugin replace email sending?"
+msgstr "Чи замінює плагін надсилання email?"
+
+#: includes/class-documentation-page.php
+msgid "No. The plugin works alongside regular email sending. All emails are sent as usual, plus copies are forwarded to Telegram for the administrator."
+msgstr "Ні. Плагін працює паралельно із звичайним надсиланням email. Усі листи надсилаються як зазвичай, а копії пересилаються адміністратору в Telegram."
+
+#: includes/class-documentation-page.php
+msgid "Is there a limit on the number of messages?"
+msgstr "Чи є обмеження на кількість повідомлень?"
+
+#: includes/class-documentation-page.php
+msgid "Telegram has a limit of 30 messages per second per bot. This is more than enough for a typical website."
+msgstr "Telegram має обмеження — 30 повідомлень на секунду на бота. Цього більш ніж достатньо для типового сайту."
+
+#: includes/class-documentation-page.php
+msgid "Telegram Chat"
+msgstr "Чат у Telegram"
+
+#: includes/class-documentation-page.php
+msgid "Ask a question in our Telegram support chat."
+msgstr "Поставте запитання в нашому чаті підтримки в Telegram."
+
+#: includes/class-documentation-page.php
+msgid "Open Chat"
+msgstr "Відкрити чат"
+
+#: includes/class-documentation-page.php
+msgid "Send us an email for assistance."
+msgstr "Надішліть нам лист для отримання допомоги."
+
+#: includes/class-documentation-page.php
+msgid "Send Email"
+msgstr "Надіслати лист"
+
+#: includes/class-documentation-page.php
+msgid "Plugin Version:"
+msgstr "Версія плагіна:"

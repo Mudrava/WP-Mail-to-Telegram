@@ -37,8 +37,8 @@ class WPMTT_Developer_API
                 <?php echo WP_Mail_To_Telegram::is_configured() ? __('Yes', 'wp-mail-to-telegram') : __('No', 'wp-mail-to-telegram'); ?><br>
                 <strong><?php _e('Telegram Enabled:', 'wp-mail-to-telegram'); ?></strong>
                 <?php echo WP_Mail_To_Telegram::is_telegram_enabled() ? __('Yes', 'wp-mail-to-telegram') : __('No', 'wp-mail-to-telegram'); ?><br>
-                <strong><?php _e('Telegram ID:', 'wp-mail-to-telegram'); ?></strong>
-                <?php echo esc_html(WP_Mail_To_Telegram::get_option('telegram_id', '-')); ?>
+                <strong><?php _e('API Connected:', 'wp-mail-to-telegram'); ?></strong>
+                <?php echo !empty(WP_Mail_To_Telegram::get_option('api_secret', '')) ? __('Yes', 'wp-mail-to-telegram') : __('No', 'wp-mail-to-telegram'); ?>
             </p>
         </div>
         <?php

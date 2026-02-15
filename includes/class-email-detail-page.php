@@ -131,7 +131,7 @@ class WPMTT_Email_Detail_Page
                 <?php if ($view_mode === 'preview'): ?>
                     <!-- Preview Mode -->
                     <div class="wpmtt-email-preview">
-                        <iframe id="wpmtt-preview-iframe"
+                        <iframe id="wpmtt-preview-iframe" sandbox=""
                             srcdoc="<?php echo esc_attr(self::prepare_preview_html($email->message)); ?>"></iframe>
                     </div>
 

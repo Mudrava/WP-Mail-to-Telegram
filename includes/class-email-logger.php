@@ -10,46 +10,54 @@ class WPMTT_Email_Logger
 
     /**
      * Database instance
+     *
+     * @var WPMTT_Database
      */
     private $database;
 
     /**
      * Telegram sender instance
+     *
+     * @var WPMTT_Telegram_Sender
      */
     private $telegram;
 
     /**
-     * Current email ID being processed
+     * Stack of email contexts for re-entrancy protection.
+     * Each entry: ['id' => int, 'data' => array]
+     *
+     * @var array
      */
-    private $current_email_id = null;
-
-    /**
-     * Current email data
-     */
-    private $current_email_data = null;
+    private $email_stack = [];
 
     /**
      * Constructor
+     *
+     * @param WPMTT_Database        $database Database instance.
+     * @param WPMTT_Telegram_Sender $telegram Telegram sender instance.
      */
     public function __construct($database, $telegram)
     {
         $this->database = $database;
         $this->telegram = $telegram;
 
-        // Hook into wp_mail
         add_filter('wp_mail', [$this, 'log_email_before_send'], 10, 1);
-
-        // Hook into mail success/failure
         add_action('wp_mail_succeeded', [$this, 'email_sent_success']);
         add_action('wp_mail_failed', [$this, 'email_sent_failed']);
     }
 
     /**
-     * Log email before sending
+     * Log email before sending (wp_mail filter).
+     *
+     * Pushes current context onto the stack so nested wp_mail() calls
+     * don't clobber state.
+     *
+     * @param array $args wp_mail arguments.
+     * @return array Unchanged $args.
      */
     public function log_email_before_send($args)
     {
-        // Extract from email
+        // Extract From header
         $from_email = '';
         if (!empty($args['headers'])) {
             $headers = is_array($args['headers']) ? $args['headers'] : explode("\n", $args['headers']);
@@ -63,54 +71,55 @@ class WPMTT_Email_Logger
             }
         }
 
-        // Build email data
         $email_data = [
-            'to_email' => is_array($args['to']) ? implode(', ', $args['to']) : $args['to'],
-            'from_email' => $from_email ?: get_option('admin_email'),
-            'subject' => isset($args['subject']) ? $args['subject'] : '',
-            'message' => isset($args['message']) ? $args['message'] : '',
-            'headers' => isset($args['headers']) ? $args['headers'] : '',
+            'to_email'    => is_array($args['to']) ? implode(', ', $args['to']) : $args['to'],
+            'from_email'  => $from_email ?: get_option('admin_email'),
+            'subject'     => isset($args['subject']) ? $args['subject'] : '',
+            'message'     => isset($args['message']) ? $args['message'] : '',
+            'headers'     => isset($args['headers']) ? $args['headers'] : '',
             'attachments' => isset($args['attachments']) ? $args['attachments'] : [],
-            'status' => 'pending',
+            'status'      => 'pending',
         ];
 
-        // Log to database
-        $this->current_email_id = $this->database->log_email($email_data);
+        $email_id = $this->database->log_email($email_data);
 
-        // Store for later
-        $this->current_email_data = $email_data;
+        // Push onto the stack (supports nested wp_mail calls)
+        $this->email_stack[] = [
+            'id'   => $email_id,
+            'data' => $email_data,
+        ];
 
         return $args;
     }
 
     /**
-     * Email sent successfully
+     * Email sent successfully.
+     *
+     * @param array $mail_data Mail data from WordPress.
      */
     public function email_sent_success($mail_data)
     {
-        if (!$this->current_email_id) {
+        $ctx = $this->pop_context();
+        if (!$ctx) {
             return;
         }
 
-        // Update status to sent
-        $this->database->update_email($this->current_email_id, [
+        $this->database->update_email($ctx['id'], [
             'status' => 'sent',
         ]);
 
-        // Send to Telegram
-        $this->send_to_telegram();
-
-        // Clear current
-        $this->current_email_id = null;
-        $this->current_email_data = null;
+        $this->send_to_telegram($ctx);
     }
 
     /**
-     * Email send failed
+     * Email send failed.
+     *
+     * @param WP_Error $wp_error Error object.
      */
     public function email_sent_failed($wp_error)
     {
-        if (!$this->current_email_id) {
+        $ctx = $this->pop_context();
+        if (!$ctx) {
             return;
         }
 
@@ -123,40 +132,55 @@ class WPMTT_Email_Logger
             $error_message = $error->get_error_message();
         }
 
-        // Update status to failed
-        $this->database->update_email($this->current_email_id, [
-            'status' => 'failed',
+        $this->database->update_email($ctx['id'], [
+            'status'        => 'failed',
             'error_message' => $error_message,
         ]);
 
-        // Send to Telegram even on failure
-        $this->send_to_telegram(true);
-
-        // Clear current
-        $this->current_email_id = null;
-        $this->current_email_data = null;
+        // notify on failures too
+        $this->send_to_telegram($ctx, true);
     }
 
     /**
-     * Send notification to Telegram
+     * Pop the most recent email context from the stack.
+     *
+     * @return array|null Context with 'id' and 'data', or null if stack empty.
      */
-    private function send_to_telegram($is_failed = false)
+    private function pop_context()
+    {
+        if (empty($this->email_stack)) {
+            return null;
+        }
+
+        return array_pop($this->email_stack);
+    }
+
+    /**
+     * Send notification to Telegram.
+     *
+     * @param array $ctx       Email context ('id' + 'data').
+     * @param bool  $is_failed Whether the email delivery failed.
+     */
+    private function send_to_telegram($ctx, $is_failed = false)
     {
         if (!WP_Mail_To_Telegram::is_telegram_enabled()) {
             return;
         }
 
-        if (!$this->current_email_id || !$this->current_email_data) {
+        $email_id   = $ctx['id'];
+        $email_data = $ctx['data'];
+
+        if (!$email_id || !$email_data) {
             return;
         }
 
-        $result = $this->telegram->send_email($this->current_email_data, $this->current_email_id);
+        $result = $this->telegram->send_email($email_data, $email_id);
 
         $update_data = [];
 
         if (is_wp_error($result)) {
             $update_data['sent_to_tg'] = 0;
-            $update_data['tg_error'] = $result->get_error_message();
+            $update_data['tg_error']   = $result->get_error_message();
         } elseif (isset($result['success']) && $result['success']) {
             $update_data['sent_to_tg'] = 1;
             if (isset($result['message_id'])) {
@@ -164,9 +188,9 @@ class WPMTT_Email_Logger
             }
         } else {
             $update_data['sent_to_tg'] = 0;
-            $update_data['tg_error'] = isset($result['message']) ? $result['message'] : __('Unknown error', 'wp-mail-to-telegram');
+            $update_data['tg_error']   = isset($result['message']) ? $result['message'] : __('Unknown error', 'wp-mail-to-telegram');
         }
 
-        $this->database->update_email($this->current_email_id, $update_data);
+        $this->database->update_email($email_id, $update_data);
     }
 }

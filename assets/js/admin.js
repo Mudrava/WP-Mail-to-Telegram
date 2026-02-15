@@ -22,33 +22,19 @@
     };
 
     // ==========================================================================
-    // Setup Wizard
+    // Setup Wizard (2-step: Verification Code → Complete)
     // ==========================================================================
     WPMTT.setupWizard = {
         currentStep: 1,
-        telegramId: '',
-        verificationCode: '',
 
         init: function () {
             var self = this;
 
-            // Telegram ID input
-            $('#wpmtt-telegram-id').on('input', function () {
-                self.validateTelegramId($(this).val());
-            });
-
-            // Next button
-            $('.wpmtt-next-btn').on('click', function (e) {
-                e.preventDefault();
-                var nextStep = $(this).data('next');
-                self.goToStep(nextStep);
-            });
-
-            // Back button
-            $('.wpmtt-back-btn').on('click', function (e) {
-                e.preventDefault();
-                var prevStep = $(this).data('back');
-                self.goToStep(prevStep);
+            // Verification code input — validate on input
+            $('#wpmtt-verification-code').on('input', function () {
+                var val = $(this).val().replace(/\D/g, ''); // strip non-digits
+                $(this).val(val);
+                self.validateCode(val);
             });
 
             // Verify button
@@ -57,57 +43,45 @@
                 self.verifyCode();
             });
 
+            // Allow Enter key to submit
+            $('#wpmtt-verification-code').on('keypress', function (e) {
+                if (e.which === 13) {
+                    e.preventDefault();
+                    self.verifyCode();
+                }
+            });
+
             // Skip button
             $('.wpmtt-skip-btn').on('click', function (e) {
                 e.preventDefault();
                 self.skipSetup();
             });
-
-            // Initial validation
-            if ($('#wpmtt-telegram-id').val()) {
-                this.validateTelegramId($('#wpmtt-telegram-id').val());
-            }
         },
 
-        validateTelegramId: function (value) {
-            var $input = $('#wpmtt-telegram-id');
+        validateCode: function (value) {
+            var $input = $('#wpmtt-verification-code');
             var $status = $input.siblings('.wpmtt-input-status');
-            var $nextBtn = $('.wpmtt-next-btn[data-next="2"]');
+            var $btn = $('.wpmtt-verify-btn');
 
-            // Remove previous classes
             $input.removeClass('valid invalid');
             $status.removeClass('success error').text('');
 
             if (!value) {
-                $nextBtn.prop('disabled', true);
+                $btn.prop('disabled', true);
                 return;
             }
 
-            // Check if numeric (can be negative for groups)
-            if (/^-?\d+$/.test(value)) {
+            if (/^\d{6}$/.test(value)) {
                 $input.addClass('valid');
                 $status.addClass('success').text('OK');
-                $nextBtn.prop('disabled', false);
-                this.telegramId = value;
+                $btn.prop('disabled', false);
+            } else if (value.length < 6) {
+                // Still typing, don't mark as invalid yet
+                $btn.prop('disabled', true);
             } else {
                 $input.addClass('invalid');
-                $status.addClass('error').text('ID must be a number');
-                $nextBtn.prop('disabled', true);
-            }
-        },
-
-        goToStep: function (step) {
-            var self = this;
-
-            // Save Telegram ID before moving to step 2
-            if (step === 2 && this.currentStep === 1) {
-                this.saveTelegramId(function (success) {
-                    if (success) {
-                        self.showStep(step);
-                    }
-                });
-            } else {
-                this.showStep(step);
+                $status.addClass('error').text(wpmtt.strings.code_format || '6 digits required');
+                $btn.prop('disabled', true);
             }
         },
 
@@ -131,36 +105,6 @@
             });
         },
 
-        saveTelegramId: function (callback) {
-            var self = this;
-            var $status = $('#wpmtt-telegram-id').siblings('.wpmtt-input-status');
-
-            $status.removeClass('success error').text(wpmtt.strings.validating || 'Validating...');
-
-            $.ajax({
-                url: wpmtt.ajax_url,
-                type: 'POST',
-                data: {
-                    action: 'wpmtt_validate_telegram_id',
-                    nonce: wpmtt.nonce,
-                    telegram_id: this.telegramId
-                },
-                success: function (response) {
-                    if (response.success) {
-                        $status.addClass('success').text(wpmtt.strings.saved || 'Saved');
-                        callback(true);
-                    } else {
-                        $status.addClass('error').text(response.data.message);
-                        callback(false);
-                    }
-                },
-                error: function () {
-                    $status.addClass('error').text(wpmtt.strings.error || 'Error');
-                    callback(false);
-                }
-            });
-        },
-
         verifyCode: function () {
             var self = this;
             var $input = $('#wpmtt-verification-code');
@@ -169,7 +113,12 @@
             var code = $input.val().trim();
 
             if (!code) {
-                $status.addClass('error').text('Please enter the verification code');
+                $status.addClass('error').text(wpmtt.strings.enter_code || 'Please enter the verification code');
+                return;
+            }
+
+            if (!/^\d{6}$/.test(code)) {
+                $status.addClass('error').text(wpmtt.strings.code_format || '6 digits required');
                 return;
             }
 
@@ -188,18 +137,18 @@
                 success: function (response) {
                     if (response.success) {
                         $status.addClass('success').text(response.data.message);
-                        // Go to step 3
+                        // Go to step 2 (Complete)
                         setTimeout(function () {
-                            self.showStep(3);
+                            self.showStep(2);
                         }, 1000);
                     } else {
                         $status.addClass('error').text(response.data.message);
-                        $btn.prop('disabled', false).text('Connect');
+                        $btn.prop('disabled', false).text(wpmtt.strings.connect || 'Connect');
                     }
                 },
                 error: function () {
                     $status.addClass('error').text(wpmtt.strings.error || 'Connection error');
-                    $btn.prop('disabled', false).text('Connect');
+                    $btn.prop('disabled', false).text(wpmtt.strings.connect || 'Connect');
                 }
             });
         },

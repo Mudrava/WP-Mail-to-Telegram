@@ -294,31 +294,25 @@ class WPMTT_Database
     {
         global $wpdb;
 
-        $stats = [
-            'total' => 0,
-            'sent' => 0,
-            'failed' => 0,
-            'sent_to_tg' => 0,
-            'today' => 0,
-        ];
-
-        // Total
-        $stats['total'] = (int) $wpdb->get_var("SELECT COUNT(*) FROM {$this->table_name}");
-
-        // By status
-        $stats['sent'] = (int) $wpdb->get_var("SELECT COUNT(*) FROM {$this->table_name} WHERE status = 'sent'");
-        $stats['failed'] = (int) $wpdb->get_var("SELECT COUNT(*) FROM {$this->table_name} WHERE status = 'failed'");
-
-        // Sent to TG
-        $stats['sent_to_tg'] = (int) $wpdb->get_var("SELECT COUNT(*) FROM {$this->table_name} WHERE sent_to_tg = 1");
-
-        // Today
         $today = current_time('Y-m-d');
-        $stats['today'] = (int) $wpdb->get_var($wpdb->prepare(
-            "SELECT COUNT(*) FROM {$this->table_name} WHERE DATE(created_at) = %s",
+
+        $row = $wpdb->get_row($wpdb->prepare(
+            "SELECT
+                COUNT(*) AS total,
+                SUM(CASE WHEN status = 'sent' THEN 1 ELSE 0 END) AS sent,
+                SUM(CASE WHEN status = 'failed' THEN 1 ELSE 0 END) AS failed,
+                SUM(CASE WHEN sent_to_tg = 1 THEN 1 ELSE 0 END) AS sent_to_tg,
+                SUM(CASE WHEN DATE(created_at) = %s THEN 1 ELSE 0 END) AS today
+            FROM {$this->table_name}",
             $today
         ));
 
-        return $stats;
+        return [
+            'total'      => $row ? (int) $row->total : 0,
+            'sent'       => $row ? (int) $row->sent : 0,
+            'failed'     => $row ? (int) $row->failed : 0,
+            'sent_to_tg' => $row ? (int) $row->sent_to_tg : 0,
+            'today'      => $row ? (int) $row->today : 0,
+        ];
     }
 }

@@ -1,6 +1,6 @@
 <?php
 /**
- * Setup Wizard - Premium onboarding experience
+ * Setup Wizard - Streamlined onboarding (2 steps)
  */
 
 defined('ABSPATH') || exit;
@@ -14,7 +14,6 @@ class WPMTT_Setup_Wizard
     public function __construct()
     {
         add_action('admin_init', [$this, 'maybe_show_wizard']);
-        add_action('wp_ajax_wpmtt_validate_telegram_id', [$this, 'ajax_validate_telegram_id']);
         add_action('wp_ajax_wpmtt_verify_code', [$this, 'ajax_verify_code']);
         add_action('wp_ajax_wpmtt_complete_setup', [$this, 'ajax_complete_setup']);
         add_action('wp_ajax_wpmtt_skip_setup', [$this, 'ajax_skip_setup']);
@@ -41,7 +40,6 @@ class WPMTT_Setup_Wizard
     public function render_wizard()
     {
         $current_step = isset($_GET['step']) ? intval($_GET['step']) : 1;
-        $telegram_id = WP_Mail_To_Telegram::get_option('telegram_id', '');
         ?>
         <div class="wpmtt-setup-overlay">
             <div class="wpmtt-setup-wizard">
@@ -68,7 +66,7 @@ class WPMTT_Setup_Wizard
                     </div>
                     <h1><?php _e('Welcome to WP Mail to Telegram', 'wp-mail-to-telegram'); ?></h1>
                     <p class="wpmtt-setup-subtitle">
-                        <?php _e('Set up email notifications to Telegram in just a few minutes', 'wp-mail-to-telegram'); ?>
+                        <?php _e('Connect your site to Telegram in one simple step', 'wp-mail-to-telegram'); ?>
                     </p>
                 </div>
 
@@ -76,16 +74,11 @@ class WPMTT_Setup_Wizard
                 <div class="wpmtt-setup-progress">
                     <div class="wpmtt-progress-step <?php echo $current_step >= 1 ? 'active' : ''; ?>" data-step="1">
                         <span class="step-number">1</span>
-                        <span class="step-label"><?php _e('Telegram ID', 'wp-mail-to-telegram'); ?></span>
+                        <span class="step-label"><?php _e('Connect Bot', 'wp-mail-to-telegram'); ?></span>
                     </div>
                     <div class="wpmtt-progress-line <?php echo $current_step >= 2 ? 'active' : ''; ?>"></div>
                     <div class="wpmtt-progress-step <?php echo $current_step >= 2 ? 'active' : ''; ?>" data-step="2">
                         <span class="step-number">2</span>
-                        <span class="step-label"><?php _e('Connect Bot', 'wp-mail-to-telegram'); ?></span>
-                    </div>
-                    <div class="wpmtt-progress-line <?php echo $current_step >= 3 ? 'active' : ''; ?>"></div>
-                    <div class="wpmtt-progress-step <?php echo $current_step >= 3 ? 'active' : ''; ?>" data-step="3">
-                        <span class="step-number">3</span>
                         <span class="step-label"><?php _e('Complete', 'wp-mail-to-telegram'); ?></span>
                     </div>
                 </div>
@@ -93,56 +86,21 @@ class WPMTT_Setup_Wizard
                 <!-- Steps Content -->
                 <div class="wpmtt-setup-content">
 
-                    <!-- Step 1: Telegram ID -->
+                    <!-- Step 1: Verification Code -->
                     <div class="wpmtt-setup-step <?php echo $current_step === 1 ? 'active' : ''; ?>" data-step="1">
-                        <div class="wpmtt-step-icon">
-                            <span class="dashicons dashicons-admin-users"></span>
-                        </div>
-                        <h2><?php _e('Get Your Telegram ID', 'wp-mail-to-telegram'); ?></h2>
-
-                        <div class="wpmtt-info-box">
-                            <h4><?php _e('How to get your Telegram ID:', 'wp-mail-to-telegram'); ?></h4>
-                            <ol>
-                                <li><?php _e('Open Telegram and find the bot', 'wp-mail-to-telegram'); ?> <a
-                                        href="https://t.me/ShowMyTelegramIDBot" target="_blank">@ShowMyTelegramIDBot</a></li>
-                                <li><?php _e('Press the <strong>Start</strong> button or send the command', 'wp-mail-to-telegram'); ?>
-                                    <code>/start</code>
-                                </li>
-                                <li><?php _e('Send the command', 'wp-mail-to-telegram'); ?> <code>/chatid</code></li>
-                                <li><?php _e('Copy the numeric ID you receive', 'wp-mail-to-telegram'); ?></li>
-                            </ol>
-                        </div>
-
-                        <div class="wpmtt-input-group">
-                            <label for="wpmtt-telegram-id"><?php _e('Your Telegram ID', 'wp-mail-to-telegram'); ?></label>
-                            <input type="text" id="wpmtt-telegram-id" value="<?php echo esc_attr($telegram_id); ?>"
-                                placeholder="123456789" autocomplete="off">
-                            <span class="wpmtt-input-status"></span>
-                        </div>
-
-                        <div class="wpmtt-step-actions">
-                            <button type="button"
-                                class="button button-secondary wpmtt-skip-btn"><?php _e('Set Up Later', 'wp-mail-to-telegram'); ?></button>
-                            <button type="button" class="button button-primary button-hero wpmtt-next-btn" data-next="2"
-                                disabled><?php _e('Next', 'wp-mail-to-telegram'); ?> →</button>
-                        </div>
-                    </div>
-
-                    <!-- Step 2: Bot Connection -->
-                    <div class="wpmtt-setup-step <?php echo $current_step === 2 ? 'active' : ''; ?>" data-step="2">
                         <div class="wpmtt-step-icon">
                             <span class="dashicons dashicons-admin-plugins"></span>
                         </div>
                         <h2><?php _e('Connect the Bot to Your Website', 'wp-mail-to-telegram'); ?></h2>
 
                         <div class="wpmtt-info-box">
-                            <h4><?php _e('Follow these steps:', 'wp-mail-to-telegram'); ?></h4>
+                            <h4><?php _e('How to get a verification code:', 'wp-mail-to-telegram'); ?></h4>
                             <ol>
                                 <li><?php _e('Open Telegram and find the bot', 'wp-mail-to-telegram'); ?> <a
                                         href="https://t.me/WPMailToTelegramBot" target="_blank">@WPMailToTelegramBot</a></li>
                                 <li><?php _e('Press <strong>Start</strong> to launch the bot', 'wp-mail-to-telegram'); ?></li>
                                 <li><?php _e('Send the command', 'wp-mail-to-telegram'); ?> <code>/addsite</code></li>
-                                <li><?php _e('The bot will give you a verification code - copy it', 'wp-mail-to-telegram'); ?>
+                                <li><?php _e('The bot will give you a 6-digit verification code — enter it below', 'wp-mail-to-telegram'); ?>
                                 </li>
                             </ol>
                         </div>
@@ -150,20 +108,21 @@ class WPMTT_Setup_Wizard
                         <div class="wpmtt-input-group">
                             <label
                                 for="wpmtt-verification-code"><?php _e('Verification Code from Bot', 'wp-mail-to-telegram'); ?></label>
-                            <input type="text" id="wpmtt-verification-code" placeholder="XXXX-XXXX-XXXX" autocomplete="off">
+                            <input type="text" id="wpmtt-verification-code" placeholder="123456" autocomplete="off"
+                                maxlength="6" inputmode="numeric" pattern="\d{6}">
                             <span class="wpmtt-input-status"></span>
                         </div>
 
                         <div class="wpmtt-step-actions">
-                            <button type="button" class="button button-secondary wpmtt-back-btn" data-back="1">←
-                                <?php _e('Back', 'wp-mail-to-telegram'); ?></button>
+                            <button type="button"
+                                class="button button-secondary wpmtt-skip-btn"><?php _e('Set Up Later', 'wp-mail-to-telegram'); ?></button>
                             <button type="button"
                                 class="button button-primary button-hero wpmtt-verify-btn"><?php _e('Connect', 'wp-mail-to-telegram'); ?></button>
                         </div>
                     </div>
 
-                    <!-- Step 3: Complete -->
-                    <div class="wpmtt-setup-step <?php echo $current_step === 3 ? 'active' : ''; ?>" data-step="3">
+                    <!-- Step 2: Complete -->
+                    <div class="wpmtt-setup-step <?php echo $current_step === 2 ? 'active' : ''; ?>" data-step="2">
                         <div class="wpmtt-step-icon wpmtt-success-icon">
                             <span class="dashicons dashicons-yes-alt"></span>
                         </div>
@@ -262,30 +221,6 @@ class WPMTT_Setup_Wizard
     }
 
     /**
-     * AJAX: Validate Telegram ID
-     */
-    public function ajax_validate_telegram_id()
-    {
-        check_ajax_referer('wpmtt_nonce', 'nonce');
-
-        if (!current_user_can('manage_options')) {
-            wp_send_json_error(['message' => __('Permission denied', 'wp-mail-to-telegram')]);
-        }
-
-        $telegram_id = isset($_POST['telegram_id']) ? sanitize_text_field($_POST['telegram_id']) : '';
-
-        // Validate - must be numeric
-        if (empty($telegram_id) || !preg_match('/^-?\d+$/', $telegram_id)) {
-            wp_send_json_error(['message' => __('Telegram ID must be a number', 'wp-mail-to-telegram')]);
-        }
-
-        // Save
-        WP_Mail_To_Telegram::update_option('telegram_id', $telegram_id);
-
-        wp_send_json_success(['message' => __('Telegram ID saved', 'wp-mail-to-telegram')]);
-    }
-
-    /**
      * AJAX: Verify code with API
      */
     public function ajax_verify_code()
@@ -297,27 +232,33 @@ class WPMTT_Setup_Wizard
         }
 
         $code = isset($_POST['code']) ? sanitize_text_field($_POST['code']) : '';
-        $telegram_id = WP_Mail_To_Telegram::get_option('telegram_id', '');
 
         if (empty($code)) {
             wp_send_json_error(['message' => __('Please enter the verification code', 'wp-mail-to-telegram')]);
         }
 
-        if (empty($telegram_id)) {
-            wp_send_json_error(['message' => __('Please enter your Telegram ID first', 'wp-mail-to-telegram')]);
+        // Validate format: must be 6 digits
+        if (!preg_match('/^\d{6}$/', $code)) {
+            wp_send_json_error(['message' => __('Verification code must be a 6-digit number', 'wp-mail-to-telegram')]);
         }
 
         // Call API
         $api_client = wpmtt()->api_client;
-        $result = $api_client->verify_site($code, $telegram_id);
+        $result = $api_client->verify_site($code);
 
         if (is_wp_error($result)) {
             wp_send_json_error(['message' => $result->get_error_message()]);
         }
 
         if (isset($result['success']) && $result['success']) {
-            // Save verification code
-            WP_Mail_To_Telegram::update_option('verification_code', $code);
+            // Save the 256-bit API secret returned by the server (NOT the 6-digit code).
+            // The bot only stores a SHA-256 hash; this is the only copy of the plain-text secret.
+            if (empty($result['api_secret'])) {
+                wp_send_json_error(['message' => __('Server did not return an API secret. Please update the bot.', 'wp-mail-to-telegram')]);
+                return;
+            }
+
+            WP_Mail_To_Telegram::update_option('api_secret', sanitize_text_field($result['api_secret']));
             WP_Mail_To_Telegram::update_option('telegram_enabled', true);
             update_option('wpmtt_setup_complete', true);
 

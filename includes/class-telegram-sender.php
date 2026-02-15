@@ -28,6 +28,10 @@ class WPMTT_Telegram_Sender
 
     /**
      * Send email notification to Telegram
+     *
+     * @param array $email_data Email data from logger (keys: to_email, from_email, subject, message, attachments)
+     * @param int   $email_id   Database ID of the email log entry
+     * @return array|WP_Error
      */
     public function send_email($email_data, $email_id)
     {
@@ -35,29 +39,41 @@ class WPMTT_Telegram_Sender
             return false;
         }
 
-        // Format message
+        // Format message for Telegram
         $message = $this->format_email_message($email_data, $email_id);
 
-        // Get view URL
+        // Build view URL
         $view_url = admin_url('admin.php?page=wpmtt-email-view&id=' . $email_id);
+
+        // Normalize keys for API client (logger uses to_email/from_email, API expects to/from)
+        $to = is_array($email_data['to_email']) ? implode(', ', $email_data['to_email']) : $email_data['to_email'];
+        $from = !empty($email_data['from_email']) ? $email_data['from_email'] : get_option('admin_email');
+
+        // Count attachments
+        $attachments_count = 0;
+        if (!empty($email_data['attachments']) && is_array($email_data['attachments'])) {
+            $attachments_count = count($email_data['attachments']);
+        }
 
         $data = [
             'email_id' => $email_id,
-            'to' => is_array($email_data['to']) ? implode(', ', $email_data['to']) : $email_data['to'],
-            'from' => $email_data['from'],
-            'subject' => $email_data['subject'],
+            'to' => $to,
+            'from' => $from,
+            'subject' => isset($email_data['subject']) ? $email_data['subject'] : '',
             'message' => $message,
             'view_url' => $view_url,
-            'attachments' => $email_data['attachments'],
+            'attachments_count' => $attachments_count,
         ];
 
-        $result = $this->api_client->send_email_notification($data);
-
-        return $result;
+        return $this->api_client->send_email_notification($data);
     }
 
     /**
      * Send custom message
+     *
+     * @param string $message Message text
+     * @param array  $options Optional settings
+     * @return array|WP_Error
      */
     public function send_custom_message($message, $options = [])
     {
@@ -75,13 +91,17 @@ class WPMTT_Telegram_Sender
 
     /**
      * Format email for Telegram
+     *
+     * @param array $email_data Email data from logger
+     * @param int   $email_id   Email log ID
+     * @return string Formatted message
      */
     private function format_email_message($email_data, $email_id)
     {
         $site_name = get_bloginfo('name');
         $view_url = admin_url('admin.php?page=wpmtt-email-view&id=' . $email_id);
 
-        $to = is_array($email_data['to']) ? implode(', ', $email_data['to']) : $email_data['to'];
+        $to = is_array($email_data['to_email']) ? implode(', ', $email_data['to_email']) : $email_data['to_email'];
 
         // Build message
         $lines = [];
@@ -90,11 +110,14 @@ class WPMTT_Telegram_Sender
         $lines[] = "";
         $lines[] = "<b>To:</b> " . esc_html($to);
 
-        if (!empty($email_data['from'])) {
-            $lines[] = "<b>From:</b> " . esc_html($email_data['from']);
+        if (!empty($email_data['from_email'])) {
+            $lines[] = "<b>From:</b> " . esc_html($email_data['from_email']);
         }
 
-        $lines[] = "<b>Subject:</b> " . esc_html($email_data['subject']);
+        if (!empty($email_data['subject'])) {
+            $lines[] = "<b>Subject:</b> " . esc_html($email_data['subject']);
+        }
+
         $lines[] = "";
 
         // Message preview
@@ -110,8 +133,8 @@ class WPMTT_Telegram_Sender
         $lines[] = "";
 
         // Attachments
-        if (!empty($email_data['attachments'])) {
-            $count = is_array($email_data['attachments']) ? count($email_data['attachments']) : 1;
+        if (!empty($email_data['attachments']) && is_array($email_data['attachments'])) {
+            $count = count($email_data['attachments']);
             $lines[] = "Attachments: " . $count;
             $lines[] = "";
         }
@@ -123,6 +146,9 @@ class WPMTT_Telegram_Sender
 
     /**
      * Strip HTML for Telegram message
+     *
+     * @param string $html HTML content
+     * @return string Plain text suitable for Telegram
      */
     private function strip_html_for_telegram($html)
     {
@@ -143,7 +169,7 @@ class WPMTT_Telegram_Sender
         $text = preg_replace('/\n{3,}/', "\n\n", $text);
         $text = trim($text);
 
-        // Escape HTML entities for Telegram
+        // Decode HTML entities
         $text = html_entity_decode($text, ENT_QUOTES, 'UTF-8');
 
         return $text;

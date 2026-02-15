@@ -22,7 +22,7 @@ define('WPMTT_PLUGIN_FILE', __FILE__);
 define('WPMTT_PLUGIN_DIR', plugin_dir_path(__FILE__));
 define('WPMTT_PLUGIN_URL', plugin_dir_url(__FILE__));
 define('WPMTT_PLUGIN_BASENAME', plugin_basename(__FILE__));
-define('WPMTT_API_URL', 'http://tgb.mudrava.com/myplugin');
+define('WPMTT_API_URL', 'https://tgb.mudrava.com/api/m/wpmailtt/webhook/cmkcsetk4002p7w0ii4czelcy');
 
 // Minimum PHP version check
 if (version_compare(PHP_VERSION, '7.4', '<')) {
@@ -270,11 +270,12 @@ final class WP_Mail_To_Telegram
     }
 
     /**
-     * Check if plugin is configured
+     * Check if plugin is configured (setup complete AND api_secret present)
      */
     public static function is_configured()
     {
-        return (bool) get_option('wpmtt_setup_complete', false);
+        return (bool) get_option('wpmtt_setup_complete', false)
+            && !empty(self::get_option('api_secret', ''));
     }
 
     /**

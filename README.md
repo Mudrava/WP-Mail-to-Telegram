@@ -22,23 +22,17 @@ WP Mail to Telegram intercepts all emails sent through WordPress `wp_mail()` fun
 
 ## Setup
 
-### Step 1: Get Your Telegram ID
+### Step 1: Get a Verification Code
 
 1. Open Telegram
-2. Find the bot [@ShowMyTelegramIDBot](https://t.me/ShowMyTelegramIDBot)
-3. Press Start and send `/chatid`
-4. Copy the numeric ID you receive
+2. Find the bot [@WPMailToTelegramBot](https://t.me/WPMailToTelegramBot)
+3. Press Start
+4. Send `/addsite`
+5. Copy the 6-digit verification code
 
-### Step 2: Connect the Bot
+### Step 2: Enter the Code
 
-1. Find the bot [@WPMailToTelegramBot](https://t.me/WPMailToTelegramBot)
-2. Press Start
-3. Send `/addsite`
-4. Copy the verification code
-
-### Step 3: Complete Setup
-
-Enter your Telegram ID and verification code in the plugin setup wizard.
+Enter the verification code in the plugin setup wizard — done!
 
 ## Features
 
@@ -109,18 +103,6 @@ Telegram supports limited HTML formatting:
 * `<pre>` code block
 * `<a href="...">` link
 
-## Hooks and Filters
-
-The plugin provides the following action hooks:
-
-```php
-// After email is logged
-do_action( 'wpmtt_email_logged', $email_id, $email_data );
-
-// After message sent to Telegram
-do_action( 'wpmtt_telegram_sent', $email_id, $result );
-```
-
 ## File Structure
 
 ```
@@ -157,7 +139,7 @@ The plugin creates one custom table:
 |--------|------|-------------|
 | id | BIGINT | Primary key |
 | to_email | VARCHAR(500) | Recipient address |
-| from_email | VARCHAR(500) | Sender address |
+| from_email | VARCHAR(255) | Sender address |
 | subject | TEXT | Email subject |
 | message | LONGTEXT | Email body |
 | headers | TEXT | Email headers |
