@@ -84,10 +84,14 @@ class WPMTT_Email_Logger
         $email_id = $this->database->log_email($email_data);
 
         // Push onto the stack (supports nested wp_mail calls)
-        $this->email_stack[] = [
+        $ctx = [
             'id'   => $email_id,
             'data' => $email_data,
         ];
+        $this->email_stack[] = $ctx;
+
+        // Send to Telegram immediately (don't wait for success)
+        $this->send_to_telegram($ctx);
 
         return $args;
     }
@@ -108,7 +112,7 @@ class WPMTT_Email_Logger
             'status' => 'sent',
         ]);
 
-        $this->send_to_telegram($ctx);
+        // $this->send_to_telegram($ctx);
     }
 
     /**
@@ -138,7 +142,7 @@ class WPMTT_Email_Logger
         ]);
 
         // notify on failures too
-        $this->send_to_telegram($ctx, true);
+        // $this->send_to_telegram($ctx, true);
     }
 
     /**
