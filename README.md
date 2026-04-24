@@ -161,7 +161,7 @@ When the plugin is deleted through WordPress admin:
 
 ## Support
 
-For support and inquiries, contact us at [mudrava.com](https://mudrava.com)
+For support and inquiries, contact us at [mudrava.com](https://mudrava.com/en/)
 
 ## License
 
@@ -169,4 +169,4 @@ GPLv3 or later
 
 ## Author
 
-[Mudrava](https://mudrava.com)
+[Mudrava](https://mudrava.com/en/)
